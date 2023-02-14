@@ -8,9 +8,6 @@ using UnityEngine.InputSystem;
 public class PlayerControler : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] private float jumpForce;
-    [Range(0, 1f)]
-    [SerializeField] private float jumpDecay;
     [SerializeField] private float speed;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float rayLength;
@@ -18,6 +15,15 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float drag;
     [SerializeField] private float interpolationSpeed;
     private GameObject topRayOrigin, bottomRayOrigin;
+    [SerializeField]private Vector2 lastDirection = Vector2.zero;
+
+    [Header("Jumping")]
+    [SerializeField] private float jumpForce;
+    [Range(0, 1f)]
+    [SerializeField] private float jumpDecay;
+    [SerializeField] private float wallJumpForce;
+    [Range(0, 90f)]
+    [SerializeField] private float wallJumpAngle;
 
 
     [Header("Ground check")]
@@ -36,7 +42,6 @@ public class PlayerControler : MonoBehaviour
 
     private InputAction moveAction;
     private InputAction jumpAction;
-    //private PlayerInput wallJumpAction; <- Kanske
 
     #endregion
 
@@ -66,12 +71,23 @@ public class PlayerControler : MonoBehaviour
 
     private void Jump(InputAction.CallbackContext context)
     {
-        if (!IsGrounded()) return;
-        SetY(0);
-        Vector2 force = Vector2.up * jumpForce;
+        //TODO kolla alltid vid sidorna oberoende riktning för att förbättra spelarkontroll
+        if (WallInDirection(lastDirection))
+             WallJump();
+        else if (IsGrounded())
+        {
+            SetY();
+            rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            StartCoroutine(ContinueJump());
+        }        
+    }
+
+    private void WallJump()
+    {
+        float angle = wallJumpAngle / Mathf.Rad2Deg;
+        Vector2 force = new Vector2(-lastDirection.x * Mathf.Cos(angle), Mathf.Sin(angle)) * wallJumpForce;
+        SetY();
         rigidbody.AddForce(force, ForceMode2D.Impulse);
-        Print("Jumped with force: " + force);
-        StartCoroutine(ContinueJump());
     }
 
     private IEnumerator ContinueJump()
@@ -86,13 +102,36 @@ public class PlayerControler : MonoBehaviour
         {
             LerpY(0, jumpDecay);
             yield return new WaitForFixedUpdate();
-
         }
     }
 
     private void AddMovement(Vector2 direction)
     {
-        
+        if (!IsGrounded() && WallInDirection(direction)) 
+            return;
+        if (direction == Vector2.zero)
+        {
+            LerpX(0, drag);
+            return;
+        }
+        Print("Is Moving");
+        lastDirection = direction;
+        float targetSpeed = direction.x * speed * Time.deltaTime * forceConstant;
+        LerpX(targetSpeed, interpolationSpeed * Time.deltaTime);
+    }
+
+    #region Velocity
+    private void SetX(float speed = 0) => rigidbody.velocity = new Vector2(speed, rigidbody.velocity.y);
+    private void LerpX(float targetSpeed, float lerpRate) => SetX(Mathf.Lerp(rigidbody.velocity.x, targetSpeed, lerpRate));
+    private void SetY(float speed = 0) => rigidbody.velocity = new Vector2(rigidbody.velocity.x, speed);
+    private void LerpY(float targetSpeed, float lerpRate) => SetY(Mathf.Lerp(rigidbody.velocity.y, targetSpeed, lerpRate));
+    #endregion
+
+    #region Ground Check
+    private bool IsGrounded() => Physics2D.OverlapBox(GroundCheckPosition, groundCheckSize, 0f, groundMask);
+    private bool HitGround(RaycastHit2D raycast) => raycast.transform != null;
+    private bool WallInDirection(Vector2 direction)
+    {
         var topRay = Physics2D.Raycast(topRayOrigin.transform.position, direction, rayLength, groundMask);
         var bottomRay = Physics2D.Raycast(bottomRayOrigin.transform.position, direction, rayLength, groundMask);
 
@@ -101,30 +140,11 @@ public class PlayerControler : MonoBehaviour
             Debug.DrawRay(topRayOrigin.transform.position, direction * rayLength, Color.yellow);
             Debug.DrawRay(bottomRayOrigin.transform.position, direction * rayLength, Color.yellow);
         }
-
-        if (!IsGrounded() && (HitGround(topRay) || HitGround(bottomRay))) 
-            return;
-        if (direction == Vector2.zero)
-        {
-            LerpX(0, drag);
-            return;
-        }
-
-        float targetSpeed = direction.x * speed * Time.deltaTime * forceConstant;
-        LerpX(targetSpeed, interpolationSpeed * Time.deltaTime);
+        return HitGround(topRay) || HitGround(bottomRay);
     }
+    #endregion
 
-    private void SetX(float speed = 0) => rigidbody.velocity = new Vector2(speed, rigidbody.velocity.y);
-    private void LerpX(float targetSpeed, float lerpRate) => SetX(Mathf.Lerp(rigidbody.velocity.x, targetSpeed, lerpRate));
-    private void SetY(float speed = 0) => rigidbody.velocity = new Vector2(rigidbody.velocity.x, speed);
-    private void LerpY(float targetSpeed, float lerpRate) => SetY(Mathf.Lerp(rigidbody.velocity.y, targetSpeed, lerpRate));
-
-
-
-    private bool IsGrounded() => Physics2D.OverlapBox(GroundCheckPosition, groundCheckSize, 0f, groundMask);
-    private bool HitGround(RaycastHit2D raycast) => raycast.transform != null;
-
-    #region debug
+    #region Debug
     private void OnDrawGizmos()
     {
         if (drawDebug)
