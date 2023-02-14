@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,8 +11,5 @@ public class FallOutOfWorld : MonoBehaviour
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
         }
-        
     }
-
-
 }

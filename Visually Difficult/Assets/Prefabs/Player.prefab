@@ -170,7 +170,7 @@ MonoBehaviour:
     m_Bits: 64
   rayLength: 0.6
   drag: 0.085
-  interpolationSpeed: 10.1
+  acceleration: 10
   lastDirection: {x: 0, y: 0}
   jumpForce: 15
   jumpDecay: 0.094
@@ -189,7 +189,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2672675540961163704}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 00cfa248eedbe9c4ebb01d543f666f16, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

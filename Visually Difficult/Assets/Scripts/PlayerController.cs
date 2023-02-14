@@ -1,11 +1,9 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerControler : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private float speed;
@@ -13,7 +11,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float rayLength;
     [Range(0, 0.33f)]
     [SerializeField] private float drag;
-    [SerializeField] private float interpolationSpeed;
+    [SerializeField] private float acceleration;
     private GameObject topRayOrigin, bottomRayOrigin;
     [SerializeField]private Vector2 lastDirection = Vector2.zero;
 
@@ -37,7 +35,6 @@ public class PlayerControler : MonoBehaviour
 
     private PlayerInput input;
     private new Rigidbody2D rigidbody;
-    private float forceConstant = 100f;
     #region Actions
 
     private InputAction moveAction;
@@ -117,8 +114,8 @@ public class PlayerControler : MonoBehaviour
         }
         Print("Is Moving");
         lastDirection = direction;
-        float targetSpeed = direction.x * speed * Time.deltaTime * forceConstant;
-        LerpX(targetSpeed, interpolationSpeed * Time.deltaTime);
+        float targetSpeed = direction.x * speed;
+        LerpX(targetSpeed, acceleration * Time.fixedDeltaTime);
     }
 
     #region Velocity
@@ -130,7 +127,7 @@ public class PlayerControler : MonoBehaviour
 
     #region Ground Check
     private bool IsGrounded() => Physics2D.OverlapBox(GroundCheckPosition, groundCheckSize, 0f, groundMask);
-    private bool HitGround(RaycastHit2D raycast) => raycast.transform != null;
+    private bool RayHit(RaycastHit2D raycast) => raycast.transform != null;
     private bool WallInDirection(Vector2 direction)
     {
         var topRay = Physics2D.Raycast(topRayOrigin.transform.position, direction, rayLength, groundMask);
@@ -141,7 +138,7 @@ public class PlayerControler : MonoBehaviour
             Debug.DrawRay(topRayOrigin.transform.position, direction * rayLength, Color.yellow);
             Debug.DrawRay(bottomRayOrigin.transform.position, direction * rayLength, Color.yellow);
         }
-        return HitGround(topRay) || HitGround(bottomRay);
+        return RayHit(topRay) || RayHit(bottomRay);
     }
     #endregion
 
