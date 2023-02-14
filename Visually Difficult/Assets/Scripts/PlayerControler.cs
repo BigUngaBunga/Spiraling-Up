@@ -107,6 +107,7 @@ public class PlayerControler : MonoBehaviour
 
     private void AddMovement(Vector2 direction)
     {
+        //TODO kika på om man borde reducera kontroll i luften
         if (!IsGrounded() && WallInDirection(direction)) 
             return;
         if (direction == Vector2.zero)
