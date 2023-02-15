@@ -168,14 +168,14 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  rayLength: 0.6
+  rayLength: 0.65
   drag: 0.085
   acceleration: 10
   lastDirection: {x: 0, y: 0}
   jumpForce: 15
   jumpDecay: 0.094
   wallJumpForce: 20
-  wallJumpAngle: 35.4
+  wallJumpAngle: 40
   groundCheckOffset: {x: 0, y: -0.55}
   groundCheckSize: {x: 0.97, y: 0.18}
   drawDebug: 0

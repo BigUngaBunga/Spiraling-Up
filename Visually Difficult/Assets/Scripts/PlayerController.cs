@@ -35,11 +35,23 @@ public class PlayerController : MonoBehaviour
 
     private PlayerInput input;
     private new Rigidbody2D rigidbody;
+    
     #region Actions
-
     private InputAction moveAction;
     private InputAction jumpAction;
 
+    private void OnDisable()
+    {
+        jumpAction.performed -= Jump;
+        moveAction.Disable();
+
+    }
+
+    private void OnEnable()
+    {
+        jumpAction.performed += Jump;
+        moveAction.Enable();
+    }
     #endregion
 
     private void Awake()
@@ -52,14 +64,8 @@ public class PlayerController : MonoBehaviour
 
         moveAction = input.actions["Move"];
         jumpAction = input.actions["Jump"];
-
-        jumpAction.performed += Jump;
     }
 
-    private void OnDestroy()
-    {
-        jumpAction.performed -= Jump;
-    }
 
     private void FixedUpdate()
     {
@@ -68,21 +74,23 @@ public class PlayerController : MonoBehaviour
 
     private void Jump(InputAction.CallbackContext context)
     {
-        //TODO kolla alltid vid sidorna oberoende riktning för att förbättra spelarkontroll
-        if (WallInDirection(lastDirection))
-             WallJump();
+        //TODO fixa bugg där man hoppar rakt upp trots att man är bredvid en vägg
+        if (WallInDirection(Vector2.left, true))
+             WallJump(Vector2.right);
+        else if (WallInDirection(Vector2.right, true))
+            WallJump(Vector2.left);
         else if (IsGrounded())
         {
             SetY();
             rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             StartCoroutine(ContinueJump());
-        }        
+        }
     }
 
-    private void WallJump()
+    private void WallJump(Vector2 jumpDirection)
     {
         float angle = wallJumpAngle / Mathf.Rad2Deg;
-        Vector2 force = new Vector2(-lastDirection.x * Mathf.Cos(angle), Mathf.Sin(angle)) * wallJumpForce;
+        Vector2 force = new Vector2(jumpDirection.x * Mathf.Cos(angle), Mathf.Sin(angle)) * wallJumpForce;
         SetY();
         rigidbody.AddForce(force, ForceMode2D.Impulse);
     }
@@ -104,16 +112,12 @@ public class PlayerController : MonoBehaviour
 
     private void AddMovement(Vector2 direction)
     {
-        //TODO kika på om man borde reducera kontroll i luften
         if (!IsGrounded() && WallInDirection(direction)) 
             return;
-        if (direction == Vector2.zero)
-        {
-            LerpX(0, drag);
-            return;
-        }
+        if (direction == Vector2.zero){
+            LerpX(0, drag); return;}
+        //TODO kika på om man borde reducera kontroll i luften
         Print("Is Moving");
-        lastDirection = direction;
         float targetSpeed = direction.x * speed;
         LerpX(targetSpeed, acceleration * Time.fixedDeltaTime);
     }
@@ -128,17 +132,11 @@ public class PlayerController : MonoBehaviour
     #region Ground Check
     private bool IsGrounded() => Physics2D.OverlapBox(GroundCheckPosition, groundCheckSize, 0f, groundMask);
     private bool RayHit(RaycastHit2D raycast) => raycast.transform != null;
-    private bool WallInDirection(Vector2 direction)
+    private bool WallInDirection(Vector2 direction, bool dontTouchGround = false)
     {
         var topRay = Physics2D.Raycast(topRayOrigin.transform.position, direction, rayLength, groundMask);
         var bottomRay = Physics2D.Raycast(bottomRayOrigin.transform.position, direction, rayLength, groundMask);
-
-        if (drawDebug)
-        {
-            Debug.DrawRay(topRayOrigin.transform.position, direction * rayLength, Color.yellow);
-            Debug.DrawRay(bottomRayOrigin.transform.position, direction * rayLength, Color.yellow);
-        }
-        return RayHit(topRay) || RayHit(bottomRay);
+        return RayHit(topRay) || dontTouchGround ? (RayHit(bottomRay) && !IsGrounded()) : RayHit(bottomRay);
     }
     #endregion
 
@@ -149,6 +147,14 @@ public class PlayerController : MonoBehaviour
         {
             Gizmos.color = Color.red;
             Gizmos.DrawCube(GroundCheckPosition, groundCheckSize);
+
+            Gizmos.color = Color.blue;
+            Gizmos.DrawRay(topRayOrigin.transform.position, Vector2.right * rayLength);
+            Gizmos.DrawRay(bottomRayOrigin.transform.position, Vector2.right * rayLength);
+
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawRay(topRayOrigin.transform.position, Vector2.left * rayLength);
+            Gizmos.DrawRay(bottomRayOrigin.transform.position, Vector2.left* rayLength);
         }
     }
 
