@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private bool drawDebug;
     [SerializeField] private bool printDebug;
+    [SerializeField] private bool spaceForWallJump;
 
     private PlayerInput input;
     private new Rigidbody2D rigidbody;
@@ -80,11 +81,14 @@ public class PlayerController : MonoBehaviour
 
     private void Jump(InputAction.CallbackContext context)
     {
-        if (WallInDirection(Vector2.left, true))
-             WallJump(Vector2.right);
-        else if (WallInDirection(Vector2.right, true))
-            WallJump(Vector2.left);
-        else if (IsGrounded())
+        if (spaceForWallJump)
+        {
+            if (WallInDirection(Vector2.left, true))
+                WallJump(Vector2.right);
+            else if (WallInDirection(Vector2.right, true))
+                WallJump(Vector2.left);
+        }
+        if (IsGrounded())
         {
             SetY();
             rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -117,6 +121,9 @@ public class PlayerController : MonoBehaviour
 
     private void AddMovement(Vector2 direction)
     {
+        if (!spaceForWallJump)
+            EvaluateWallJump(direction);
+            
         if (!IsGrounded() && WallInDirection(direction)) 
             return;
         if (direction == Vector2.zero){
@@ -125,6 +132,13 @@ public class PlayerController : MonoBehaviour
         Print("Is Moving");
         float targetSpeed = direction.x * speed;
         LerpX(targetSpeed, acceleration * Time.fixedDeltaTime);
+        lastDirection = direction;
+    }
+
+    private void EvaluateWallJump(Vector2 direction)
+    {
+        if (direction != Vector2.zero && lastDirection == direction * -1 && WallInDirection(lastDirection))
+            WallJump(direction);
     }
 
     #region Velocity

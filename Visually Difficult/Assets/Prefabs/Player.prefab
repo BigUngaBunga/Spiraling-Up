@@ -164,22 +164,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 201425a516146714a82a6ba744c31b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7.75
+  speed: 9
   groundMask:
     serializedVersion: 2
     m_Bits: 64
   rayLength: 0.65
   drag: 0.085
   acceleration: 10
-  lastDirection: {x: 0, y: 0}
-  jumpForce: 15
-  jumpDecay: 0.094
-  wallJumpForce: 20
-  wallJumpAngle: 40
+  lastDirection: {x: -1, y: 0}
+  jumpForce: 13
+  jumpDecay: 0.11
+  wallJumpForce: 18
+  wallJumpAngle: 45
   groundCheckOffset: {x: 0, y: -0.55}
   groundCheckSize: {x: 0.92, y: 0.18}
   drawDebug: 0
   printDebug: 0
+  spaceForWallJump: 1
 --- !u!61 &2672675540961163710
 BoxCollider2D:
   m_ObjectHideFlags: 0
