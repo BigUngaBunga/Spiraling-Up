@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -66,6 +67,11 @@ public class PlayerController : MonoBehaviour
         jumpAction = input.actions["Jump"];
     }
 
+    public void Kill()
+    {
+        //TODO vänta lite innan man laddar om för att kunna använda någon effekt
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+    }
 
     private void FixedUpdate()
     {
@@ -74,7 +80,6 @@ public class PlayerController : MonoBehaviour
 
     private void Jump(InputAction.CallbackContext context)
     {
-        //TODO fixa bugg där man hoppar rakt upp trots att man är bredvid en vägg
         if (WallInDirection(Vector2.left, true))
              WallJump(Vector2.right);
         else if (WallInDirection(Vector2.right, true))
@@ -136,7 +141,9 @@ public class PlayerController : MonoBehaviour
     {
         var topRay = Physics2D.Raycast(topRayOrigin.transform.position, direction, rayLength, groundMask);
         var bottomRay = Physics2D.Raycast(bottomRayOrigin.transform.position, direction, rayLength, groundMask);
-        return RayHit(topRay) || dontTouchGround ? (RayHit(bottomRay) && !IsGrounded()) : RayHit(bottomRay);
+        bool hitTop = RayHit(topRay);
+        bool hitBottom = dontTouchGround ? (RayHit(bottomRay) && !IsGrounded()) : RayHit(bottomRay);
+        return hitTop || hitBottom;
     }
     #endregion
 
