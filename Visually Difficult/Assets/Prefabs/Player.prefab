@@ -164,20 +164,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 201425a516146714a82a6ba744c31b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 9
   groundMask:
     serializedVersion: 2
     m_Bits: 64
   rayLength: 0.65
-  drag: 0.085
-  acceleration: 10
-  lastDirection: {x: -1, y: 0}
-  jumpForce: 13
-  jumpDecay: 0.11
-  wallJumpForce: 18
+  speed: 10
+  deceleration: 50
+  acceleration: 40
+  jumpVelocity: 14
+  jumpDecay: 25
+  jumpBuffer: 0.2
+  wallJumpVelocity: 15
   wallJumpAngle: 45
+  wallJumpDisableDuration: 0.3
   groundCheckOffset: {x: 0, y: -0.55}
-  groundCheckSize: {x: 0.92, y: 0.18}
+  groundCheckSize: {x: 0.92, y: 0.1}
   drawDebug: 0
   printDebug: 0
   spaceForWallJump: 1

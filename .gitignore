@@ -1,0 +1,12 @@
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+Logs/
+
+.vs/
+.gradle/
+
+*.user
+*.userprefs
