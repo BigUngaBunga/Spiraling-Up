@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private bool drawDebug;
     [SerializeField] private bool printDebug;
-    [SerializeField] private bool spaceForWallJump;
 
     private GameObject topRayOrigin, bottomRayOrigin;
 
@@ -160,9 +159,6 @@ public class PlayerController : MonoBehaviour
 
     private void AddMovement(Vector2 direction)
     {
-        if (!spaceForWallJump)
-            EvaluateWallJump(direction);
-            
         if (inputDisabled || (!isGrounded && WallInDirection(direction))) 
             return;
 
@@ -171,8 +167,7 @@ public class PlayerController : MonoBehaviour
 
         if (direction != Vector2.zero)
         {
-            //TODO kika på om man borde reducera kontroll i luften
-            Print("Is Moving");
+            Print("Is Moving " + direction);
             float targetSpeed = direction.x * speed;
             LerpX(targetSpeed, acceleration * Time.fixedDeltaTime);
             lastDirection = direction;
@@ -192,7 +187,7 @@ public class PlayerController : MonoBehaviour
             jumpTimer = -1;
             coyoteTimer = coyoteTime;
         }
-        else if (spaceForWallJump)
+        else
         {
             if (WallInDirection(Vector2.left, true))
                 WallJump(Vector2.right);
