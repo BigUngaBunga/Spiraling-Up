@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 73689931953122692}
   - component: {fileID: 6773783357618799978}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2628814097352098626}
   - component: {fileID: 5549675681720270522}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 1845113089014522604}
   - component: {fileID: 8869511496098904586}
   - component: {fileID: 4292444921231564856}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sawblade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9191557668165395173}
   - component: {fileID: 4361350927449272856}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -395,7 +395,7 @@ GameObject:
   m_Component:
   - component: {fileID: 763888028901525086}
   - component: {fileID: 983016676608683056}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
