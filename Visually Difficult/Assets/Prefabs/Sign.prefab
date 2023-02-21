@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2939967366495043962}
   - component: {fileID: 20603841705803790}
   - component: {fileID: 5352189416158902573}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8044985777931542569}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6710011852904907822}
   - component: {fileID: 7288250646048763345}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4790710477524160051}
   - component: {fileID: 8271668260935474185}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 8965938395463569426}
   - component: {fileID: 2880517348164698542}
   - component: {fileID: 3243983018122084396}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Scribbles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
