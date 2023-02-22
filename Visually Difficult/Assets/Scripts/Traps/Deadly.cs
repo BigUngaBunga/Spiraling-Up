@@ -14,8 +14,7 @@ public class Deadly : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log(deathReason);
-            collision.GetComponent<PlayerController>().Kill();
+            collision.GetComponent<PlayerController>().Kill(deathReason);
         }
     }
 }

@@ -18,7 +18,7 @@ public class Projectile : MonoBehaviour
         if (hit.collider != null)
         {
             if (hit.transform.TryGetComponent(out PlayerController player))
-                player.Kill();
+                player.Kill("Shot by projectile");
 
             travelDistance = hit.distance;
 

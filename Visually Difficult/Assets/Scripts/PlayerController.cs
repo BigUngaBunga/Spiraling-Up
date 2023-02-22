@@ -80,9 +80,10 @@ public class PlayerController : MonoBehaviour
         jumpAction = input.actions["Jump"];
     }
 
-    public void Kill()
+    public void Kill(string deathReason = "")
     {
         //TODO vänta lite innan man laddar om för att kunna använda någon effekt
+        Print(deathReason);
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
     }
 
