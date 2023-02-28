@@ -45,7 +45,6 @@ public class PlayerController : MonoBehaviour
     private float jumpTimer;
     private float coyoteTimer;
 
-    private PlayerInput input;
     private new Rigidbody2D rigidbody;
 
     private Vector2 GroundCheckPosition => (Vector2)transform.position + groundCheckOffset;
@@ -71,7 +70,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-        input = GetComponent<PlayerInput>();
+        PlayerInput input = GetComponent<PlayerInput>();
 
         topRayOrigin = transform.Find("TopRay").gameObject;
         bottomRayOrigin = transform.Find("BottomRay").gameObject;
@@ -139,11 +138,7 @@ public class PlayerController : MonoBehaviour
         WaitForFixedUpdate wait = new ();
 
         while (jumpAction.IsPressed() && rigidbody.velocity.y > 0)
-        {
-            Print("ContinuedJump");
             yield return wait;
-        }
-        Print("Stopped Jump");
         while (rigidbody.velocity.y > 0)
         {
             LerpY(0, jumpDecay * Time.fixedDeltaTime);
@@ -168,7 +163,6 @@ public class PlayerController : MonoBehaviour
 
         if (direction != Vector2.zero)
         {
-            Print("Is Moving " + direction);
             float targetSpeed = direction.x * speed;
             LerpX(targetSpeed, acceleration * Time.fixedDeltaTime);
             lastDirection = direction;

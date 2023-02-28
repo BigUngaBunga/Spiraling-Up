@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2672675540961163711}
   - component: {fileID: 2672675540961163698}
   - component: {fileID: 2672675540961163709}
-  - component: {fileID: 2672675540961163710}
   - component: {fileID: 2672675540961163705}
+  - component: {fileID: 4973765429234566599}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -169,7 +169,7 @@ MonoBehaviour:
     m_Bits: 64
   rayLength: 0.6
   speed: 10
-  deceleration: 50
+  deceleration: 30
   acceleration: 40
   jumpVelocity: 14
   jumpDecay: 25
@@ -181,33 +181,7 @@ MonoBehaviour:
   groundCheckOffset: {x: 0, y: -0.55}
   groundCheckSize: {x: 0.92, y: 0.1}
   drawDebug: 0
-  printDebug: 0
---- !u!61 &2672675540961163710
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2672675540961163704}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 00cfa248eedbe9c4ebb01d543f666f16, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  printDebug: 1
 --- !u!50 &2672675540961163705
 Rigidbody2D:
   serializedVersion: 4
@@ -229,6 +203,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &4973765429234566599
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2672675540961163704}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &4540787480624171351
 GameObject:
   m_ObjectHideFlags: 0
