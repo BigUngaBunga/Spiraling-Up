@@ -155,8 +155,17 @@ public class PlayerController : MonoBehaviour
 
     private void AddMovement(Vector2 direction)
     {
-        if (inputDisabled || (!isGrounded && WallInDirection(direction))) 
+        if (inputDisabled)
+        {
+            Print("Can't mode due to disabled input");
             return;
+        }
+
+        if ((!isGrounded && WallInDirection(direction)))
+        {
+            Print("Can't mode due to wall");
+            return;
+        }
 
         if (direction == Vector2.zero || (rigidbody.velocity.x > 0 && direction.x < 0) || (rigidbody.velocity.x < 0 && direction.x > 0))
             LerpX(0, deceleration * Time.fixedDeltaTime);
@@ -184,19 +193,13 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (WallInDirection(Vector2.left, true))
+            if (WallInDirection(Vector2.left))
                 WallJump(Vector2.right);
-            else if (WallInDirection(Vector2.right, true))
+            else if (WallInDirection(Vector2.right))
                 WallJump(Vector2.left);
         }
 
         jumpTimer -= Time.fixedDeltaTime;
-    }
-
-    private void EvaluateWallJump(Vector2 direction)
-    {
-        if (direction != Vector2.zero && lastDirection == direction * -1 && WallInDirection(lastDirection))
-            WallJump(direction);
     }
 
     #region Velocity
@@ -209,14 +212,14 @@ public class PlayerController : MonoBehaviour
     #region Ground Check
     private bool IsGrounded() => Physics2D.OverlapBox(GroundCheckPosition, groundCheckSize, 0, groundMask);
     private bool RayHit(RaycastHit2D raycast) => raycast.transform != null;
-    private bool WallInDirection(Vector2 direction, bool dontTouchGround = false)
+    private bool WallInDirection(Vector2 direction)
     {
         var topRay = Physics2D.Raycast(topRayOrigin.transform.position, direction, rayLength, groundMask);
         var bottomRay = Physics2D.Raycast(bottomRayOrigin.transform.position, direction, rayLength, groundMask);
 
         bool hitTop = RayHit(topRay);
-        bool hitBottom = (dontTouchGround ? (RayHit(bottomRay) && !IsGrounded()) : RayHit(bottomRay));
-        
+        bool hitBottom = RayHit(bottomRay) && !IsGrounded();
+
         return hitTop || hitBottom;
     }
     #endregion

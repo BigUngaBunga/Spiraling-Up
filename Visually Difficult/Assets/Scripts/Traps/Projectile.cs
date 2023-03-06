@@ -13,7 +13,6 @@ public class Projectile : MonoBehaviour
     {
         float travelDistance = speed * Time.deltaTime;
         distanceTraveled += travelDistance;
-
         RaycastHit2D hit = Physics2D.Raycast(transform.position - (transform.right * transform.localScale.x), transform.right, travelDistance + transform.localScale.x, hitMask);
         if (hit.collider != null)
         {
