@@ -27,17 +27,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float wallJumpAngle = 45;
     [SerializeField] private float wallJumpDisableDuration = 0.2f;
 
-    [Header("Ground check")]
-    [SerializeField] private Vector2 groundCheckOffset;
-    [SerializeField] private Vector2 groundCheckSize;
-
     [Header("Debug")]
     [SerializeField] private bool drawDebug;
     [SerializeField] private bool printDebug;
 
     private GameObject topRayOrigin, bottomRayOrigin;
-
-    private Vector2 lastDirection;
 
     private bool isGrounded;
     private bool inputDisabled;
@@ -46,8 +40,6 @@ public class PlayerController : MonoBehaviour
     private float coyoteTimer;
 
     private new Rigidbody2D rigidbody;
-
-    private Vector2 GroundCheckPosition => (Vector2)transform.position + groundCheckOffset;
 
     #region Actions
     private InputAction moveAction;
@@ -88,17 +80,15 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        coyoteTimer = isGrounded ? 0 : coyoteTimer + Time.fixedDeltaTime;
         AddMovement(moveAction.ReadValue<Vector2>());
         Jumping();
-
-        coyoteTimer = isGrounded ? 0 : coyoteTimer + Time.fixedDeltaTime;
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (isGrounded || groundMask != (groundMask | (1 << collision.gameObject.layer)))
             return;
-
         for (int i = 0; i < collision.contactCount; i++)
         {
             if (Vector2.Angle(collision.GetContact(i).normal, Vector2.up) < 45)
@@ -155,15 +145,9 @@ public class PlayerController : MonoBehaviour
 
     private void AddMovement(Vector2 direction)
     {
-        if (inputDisabled)
+        if (inputDisabled || (!isGrounded && WallInDirection(direction)))
         {
-            Print("Can't mode due to disabled input");
-            return;
-        }
-
-        if ((!isGrounded && WallInDirection(direction)))
-        {
-            Print("Can't mode due to wall");
+            Print("Can't move due to wall or disabled input");
             return;
         }
 
@@ -174,7 +158,6 @@ public class PlayerController : MonoBehaviour
         {
             float targetSpeed = direction.x * speed;
             LerpX(targetSpeed, acceleration * Time.fixedDeltaTime);
-            lastDirection = direction;
         }
     }
 
@@ -188,16 +171,14 @@ public class PlayerController : MonoBehaviour
             SetY(jumpVelocity);
             StartCoroutine(ContinueJump());
 
-            jumpTimer = -1;
+            //isGrounded = false;
             coyoteTimer = coyoteTime;
+            jumpTimer = -1;
         }
-        else
-        {
-            if (WallInDirection(Vector2.left))
-                WallJump(Vector2.right);
-            else if (WallInDirection(Vector2.right))
-                WallJump(Vector2.left);
-        }
+        else if (WallInDirection(Vector2.left))
+            WallJump(Vector2.right);
+        else if (WallInDirection(Vector2.right))
+            WallJump(Vector2.left);
 
         jumpTimer -= Time.fixedDeltaTime;
     }
@@ -210,7 +191,6 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Ground Check
-    private bool IsGrounded() => Physics2D.OverlapBox(GroundCheckPosition, groundCheckSize, 0, groundMask);
     private bool RayHit(RaycastHit2D raycast) => raycast.transform != null;
     private bool WallInDirection(Vector2 direction)
     {
@@ -218,7 +198,7 @@ public class PlayerController : MonoBehaviour
         var bottomRay = Physics2D.Raycast(bottomRayOrigin.transform.position, direction, rayLength, groundMask);
 
         bool hitTop = RayHit(topRay);
-        bool hitBottom = RayHit(bottomRay) && !IsGrounded();
+        bool hitBottom = RayHit(bottomRay) && !isGrounded;
 
         return hitTop || hitBottom;
     }
@@ -229,9 +209,6 @@ public class PlayerController : MonoBehaviour
     {
         if (drawDebug)
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawCube(GroundCheckPosition, groundCheckSize);
-
             Gizmos.color = Color.blue;
             Gizmos.DrawRay(topRayOrigin.transform.position, Vector2.right * rayLength);
             Gizmos.DrawRay(bottomRayOrigin.transform.position, Vector2.right * rayLength);

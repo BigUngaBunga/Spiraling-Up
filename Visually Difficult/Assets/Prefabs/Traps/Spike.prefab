@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7345312254936726447}
   - component: {fileID: 8592289558069617884}
   m_Layer: 7
-  m_Name: Spike
+  m_Name: InnerSpike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,8 +111,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4455900938073743761}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1039, z: 0}
-  m_LocalScale: {x: 1, y: 1.3599, z: 1}
+  m_LocalPosition: {x: 0, y: -0.11, z: 0}
+  m_LocalScale: {x: 1, y: 1.35, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7345312254936726447}
@@ -187,10 +187,10 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.49565727, y: -0.28242803}
+  - {x: -0.4996386, y: -0.28828335}
   - {x: -0.004688397, y: 0.5715829}
-  - {x: 0.50366616, y: -0.29093885}
-  - {x: -0.49692196, y: -0.2882103}
+  - {x: 0.49891227, y: -0.28860837}
+  - {x: -0.4997089, y: -0.28850308}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
