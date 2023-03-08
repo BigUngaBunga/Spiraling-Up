@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [Header("Setup")]
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float rayLength;
+    [SerializeField] private Collider2D collider;
 
     [Header("Movement")]
     [SerializeField] private float speed = 10;
@@ -27,13 +29,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float wallJumpAngle = 45;
     [SerializeField] private float wallJumpDisableDuration = 0.2f;
 
+    [Header("Ground check")]
+    [SerializeField] private Vector2 groundCheckOffset;
+    [SerializeField] private Vector2 groundCheckSize;
+    private Vector2 GroundCheckPosition => (Vector2)transform.position + groundCheckOffset;
+
     [Header("Debug")]
     [SerializeField] private bool drawDebug;
     [SerializeField] private bool printDebug;
-
     private GameObject topRayOrigin, bottomRayOrigin;
 
     private bool isGrounded;
+    private bool justJumped;
     private bool inputDisabled;
 
     private float jumpTimer;
@@ -63,6 +70,7 @@ public class PlayerController : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody2D>();
         PlayerInput input = GetComponent<PlayerInput>();
+        collider = GetComponent<Collider2D>();
 
         topRayOrigin = transform.Find("TopRay").gameObject;
         bottomRayOrigin = transform.Find("BottomRay").gameObject;
@@ -87,11 +95,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (isGrounded || groundMask != (groundMask | (1 << collision.gameObject.layer)))
+        if (justJumped || isGrounded || groundMask != (groundMask | (1 << collision.gameObject.layer)))
             return;
+
         for (int i = 0; i < collision.contactCount; i++)
         {
-            if (Vector2.Angle(collision.GetContact(i).normal, Vector2.up) < 45)
+            if (Vector2.Angle(collision.GetContact(i).normal, Vector2.up) < 46)
             {
                 isGrounded = true;
                 return;
@@ -107,11 +116,15 @@ public class PlayerController : MonoBehaviour
     private void Jump(InputAction.CallbackContext context)
     {
         jumpTimer = jumpBuffer;
+        justJumped = true;
+        Invoke(nameof(ResetJustJuped), Time.fixedDeltaTime);
     }
+
+    private void ResetJustJuped() => justJumped = false;
 
     private void WallJump(Vector2 jumpDirection)
     {
-        float angle = wallJumpAngle * Mathf.Deg2Rad;
+         float angle = wallJumpAngle * Mathf.Deg2Rad;
         Vector2 velocity = new Vector2(jumpDirection.x * Mathf.Sin(angle), Mathf.Cos(angle)) * wallJumpVelocity;
         rigidbody.velocity = velocity;
 
@@ -165,21 +178,24 @@ public class PlayerController : MonoBehaviour
     {
         if (jumpTimer <= 0)
             return;
-
         if (coyoteTimer < coyoteTime)
         {
             SetY(jumpVelocity);
             StartCoroutine(ContinueJump());
 
-            //isGrounded = false;
             coyoteTimer = coyoteTime;
             jumpTimer = -1;
         }
-        else if (WallInDirection(Vector2.left))
-            WallJump(Vector2.right);
-        else if (WallInDirection(Vector2.right))
-            WallJump(Vector2.left);
+        else
+        {
+            if (WallInDirection(Vector2.left))
+                WallJump(Vector2.right);
+            else if (WallInDirection(Vector2.right))
+                WallJump(Vector2.left);
+        }
 
+
+        isGrounded = false;
         jumpTimer -= Time.fixedDeltaTime;
     }
 
@@ -191,16 +207,23 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Ground Check
+
     private bool RayHit(RaycastHit2D raycast) => raycast.transform != null;
+
+    private bool IsOnGround()
+    {
+        return Physics2D.OverlapBoxAll(GroundCheckPosition, groundCheckSize, 0f, groundMask).Length > 0;
+    }
+
     private bool WallInDirection(Vector2 direction)
     {
         var topRay = Physics2D.Raycast(topRayOrigin.transform.position, direction, rayLength, groundMask);
         var bottomRay = Physics2D.Raycast(bottomRayOrigin.transform.position, direction, rayLength, groundMask);
 
         bool hitTop = RayHit(topRay);
-        bool hitBottom = RayHit(bottomRay) && !isGrounded;
+        bool hitBottom = RayHit(bottomRay);
 
-        return hitTop || hitBottom;
+        return !IsOnGround() && ( hitTop || hitBottom);
     }
     #endregion
 
@@ -209,13 +232,19 @@ public class PlayerController : MonoBehaviour
     {
         if (drawDebug)
         {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawRay(topRayOrigin.transform.position, Vector2.right * rayLength);
-            Gizmos.DrawRay(bottomRayOrigin.transform.position, Vector2.right * rayLength);
+            Gizmos.color = Color.red;
+            Gizmos.DrawCube(GroundCheckPosition, groundCheckSize);
 
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawRay(topRayOrigin.transform.position, Vector2.left * rayLength);
-            Gizmos.DrawRay(bottomRayOrigin.transform.position, Vector2.left* rayLength);
+            if (topRayOrigin != null && bottomRayOrigin != null)
+            {
+                Gizmos.color = Color.blue;
+                Gizmos.DrawRay(topRayOrigin.transform.position, Vector2.right * rayLength);
+                Gizmos.DrawRay(bottomRayOrigin.transform.position, Vector2.right * rayLength);
+
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawRay(topRayOrigin.transform.position, Vector2.left * rayLength);
+                Gizmos.DrawRay(bottomRayOrigin.transform.position, Vector2.left * rayLength);
+            }
         }
     }
 
