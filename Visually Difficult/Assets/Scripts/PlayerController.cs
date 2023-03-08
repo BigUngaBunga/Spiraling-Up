@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
-using System.Linq;
+using UnityEditor.Animations;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -10,7 +11,6 @@ public class PlayerController : MonoBehaviour
     [Header("Setup")]
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float rayLength;
-    [SerializeField] private Collider2D collider;
 
     [Header("Movement")]
     [SerializeField] private float speed = 10;
@@ -32,13 +32,15 @@ public class PlayerController : MonoBehaviour
     [Header("Ground check")]
     [SerializeField] private Vector2 groundCheckOffset;
     [SerializeField] private Vector2 groundCheckSize;
-    private Vector2 GroundCheckPosition => (Vector2)transform.position + groundCheckOffset;
+    //TODO change to normal variables when debugging is done
+    private Vector2 GroundCheckPosition => (Vector2)transform.position + groundCheckOffset * transform.localScale;
+    private Vector2 GroundCheckSize => groundCheckSize * transform.localScale;
 
     [Header("Debug")]
     [SerializeField] private bool drawDebug;
     [SerializeField] private bool printDebug;
+    
     private GameObject topRayOrigin, bottomRayOrigin;
-
     private bool isGrounded;
     private bool justJumped;
     private bool inputDisabled;
@@ -47,8 +49,9 @@ public class PlayerController : MonoBehaviour
     private float coyoteTimer;
 
     private new Rigidbody2D rigidbody;
+    private PlayerAnimator animator;
 
-    #region Actions
+    #region Input
     private InputAction moveAction;
     private InputAction jumpAction;
 
@@ -64,13 +67,18 @@ public class PlayerController : MonoBehaviour
         jumpAction.performed += Jump;
         moveAction.Enable();
     }
+    private IEnumerator ReenableInput()
+    {
+        yield return new WaitForSeconds(wallJumpDisableDuration);
+        inputDisabled = false;
+    }
     #endregion
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<PlayerAnimator>();
         PlayerInput input = GetComponent<PlayerInput>();
-        collider = GetComponent<Collider2D>();
 
         topRayOrigin = transform.Find("TopRay").gameObject;
         bottomRayOrigin = transform.Find("BottomRay").gameObject;
@@ -91,6 +99,7 @@ public class PlayerController : MonoBehaviour
         coyoteTimer = isGrounded ? 0 : coyoteTimer + Time.fixedDeltaTime;
         AddMovement(moveAction.ReadValue<Vector2>());
         Jumping();
+        animator.UpdateAnimation(rigidbody.velocity);
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -113,18 +122,20 @@ public class PlayerController : MonoBehaviour
         isGrounded = false;
     }
 
+    #region Jumping
     private void Jump(InputAction.CallbackContext context)
     {
         jumpTimer = jumpBuffer;
         justJumped = true;
-        Invoke(nameof(ResetJustJuped), Time.fixedDeltaTime);
+        Invoke(nameof(ResetJustJumped), Time.fixedDeltaTime);
     }
 
-    private void ResetJustJuped() => justJumped = false;
+    private void ResetJustJumped() => justJumped = false;
 
     private void WallJump(Vector2 jumpDirection)
     {
-         float angle = wallJumpAngle * Mathf.Deg2Rad;
+        animator.WallJump();
+        float angle = wallJumpAngle * Mathf.Deg2Rad;
         Vector2 velocity = new Vector2(jumpDirection.x * Mathf.Sin(angle), Mathf.Cos(angle)) * wallJumpVelocity;
         rigidbody.velocity = velocity;
 
@@ -149,37 +160,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator ReenableInput()
-    {
-        yield return new WaitForSeconds(wallJumpDisableDuration);
-
-        inputDisabled = false;
-    }
-
-    private void AddMovement(Vector2 direction)
-    {
-        if (inputDisabled || (!isGrounded && WallInDirection(direction)))
-        {
-            Print("Can't move due to wall or disabled input");
-            return;
-        }
-
-        if (direction == Vector2.zero || (rigidbody.velocity.x > 0 && direction.x < 0) || (rigidbody.velocity.x < 0 && direction.x > 0))
-            LerpX(0, deceleration * Time.fixedDeltaTime);
-
-        if (direction != Vector2.zero)
-        {
-            float targetSpeed = direction.x * speed;
-            LerpX(targetSpeed, acceleration * Time.fixedDeltaTime);
-        }
-    }
-
     private void Jumping()
     {
         if (jumpTimer <= 0)
             return;
         if (coyoteTimer < coyoteTime)
         {
+            animator.Jump();
             SetY(jumpVelocity);
             StartCoroutine(ContinueJump());
 
@@ -198,8 +185,26 @@ public class PlayerController : MonoBehaviour
         isGrounded = false;
         jumpTimer -= Time.fixedDeltaTime;
     }
+    #endregion
 
     #region Velocity
+    private void AddMovement(Vector2 direction)
+    {
+        if (inputDisabled || (!isGrounded && WallInDirection(direction)))
+        {
+            Print("Can't move due to wall or disabled input");
+            return;
+        }
+
+        if (direction == Vector2.zero || (rigidbody.velocity.x > 0 && direction.x < 0) || (rigidbody.velocity.x < 0 && direction.x > 0))
+            LerpX(0, deceleration * Time.fixedDeltaTime);
+
+        if (direction != Vector2.zero)
+        {
+            float targetSpeed = direction.x * speed;
+            LerpX(targetSpeed, acceleration * Time.fixedDeltaTime);
+        }
+    }
     private void SetX(float speed = 0) => rigidbody.velocity = new Vector2(speed, rigidbody.velocity.y);
     private void LerpX(float targetSpeed, float lerpRate) => SetX(Mathf.MoveTowards(rigidbody.velocity.x, targetSpeed, lerpRate));
     private void SetY(float speed = 0) => rigidbody.velocity = new Vector2(rigidbody.velocity.x, speed);
@@ -212,7 +217,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsOnGround()
     {
-        return Physics2D.OverlapBoxAll(GroundCheckPosition, groundCheckSize, 0f, groundMask).Length > 0;
+        return Physics2D.OverlapBoxAll(GroundCheckPosition, GroundCheckSize, 0f, groundMask).Length > 0;
     }
 
     private bool WallInDirection(Vector2 direction)
@@ -233,7 +238,7 @@ public class PlayerController : MonoBehaviour
         if (drawDebug)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawCube(GroundCheckPosition, groundCheckSize);
+            Gizmos.DrawCube(GroundCheckPosition, GroundCheckSize);
 
             if (topRayOrigin != null && bottomRayOrigin != null)
             {
