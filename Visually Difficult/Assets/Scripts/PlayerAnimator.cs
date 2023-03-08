@@ -6,7 +6,7 @@ public class PlayerAnimator : MonoBehaviour
 {
     enum Direction{ Idle, Left, Right }
 
-    [SerializeField] private bool turnWithVelocity;
+    [SerializeField] private float minimumFlipVelocity;
 
     private Animator animator;
     private Direction direction;
@@ -42,7 +42,7 @@ public class PlayerAnimator : MonoBehaviour
 
         animator.SetBool("IsRunning", direction != Direction.Idle);
 
-        if (direction == Direction.Left && transform.localScale.x < 0 || direction == Direction.Right && transform.localScale.x > 0)
+        if (direction == Direction.Left && transform.localScale.x < -minimumFlipVelocity || direction == Direction.Right && transform.localScale.x > minimumFlipVelocity)
         {
             Vector3 scale = transform.localScale;
             scale.x *= -1;

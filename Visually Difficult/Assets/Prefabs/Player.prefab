@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2558933544155387674}
   - component: {fileID: 2672675540961163705}
   - component: {fileID: 1221662980304996902}
+  - component: {fileID: 6618098472851112775}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -216,6 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6247c39dea162dd4a8a525d3da84a3cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minimumFlipVelocity: 0.04
 --- !u!50 &2672675540961163705
 Rigidbody2D:
   serializedVersion: 4
@@ -250,7 +252,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.16959405, y: -0.70174813}
+  m_Offset: {x: 0.16959405, y: 0.31769323}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -261,8 +263,24 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.3035822, y: 4.450566}
+  m_Size: {x: 2.3035822, y: 2.4116826}
   m_EdgeRadius: 0
+--- !u!58 &6618098472851112775
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2672675540961163704}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.15156175, y: -1.8880237}
+  serializedVersion: 2
+  m_Radius: 1.0740285
 --- !u!1 &4540787480624171351
 GameObject:
   m_ObjectHideFlags: 0

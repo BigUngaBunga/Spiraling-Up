@@ -25,6 +25,9 @@ public class DoorHandler : MonoBehaviour
     private void SwitchToNextMap()
     {
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadSceneAsync(sceneIndex +1);
+        if (SceneManager.sceneCountInBuildSettings > sceneIndex + 1)
+            SceneManager.LoadSceneAsync(sceneIndex + 1);
+        else
+            SceneManager.LoadSceneAsync(0);
     }
 }
