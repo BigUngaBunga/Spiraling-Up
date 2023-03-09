@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25695dd75d16f51448f7b17cca44bcda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angularVelocity: 1.44
+  angularVelocity: 750
 --- !u!58 &8869511496098904586
 CircleCollider2D:
   m_ObjectHideFlags: 0

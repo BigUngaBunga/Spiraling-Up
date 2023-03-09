@@ -23,9 +23,8 @@ public class Cannon : MonoBehaviour
     [Header("Effect")]
     [SerializeField] GameObject fireEffect;
     [SerializeField] float fireEffectDuration;
-
+    
     Transform target;
-
     float timeToFire;
 
     void Start()
@@ -42,12 +41,9 @@ public class Cannon : MonoBehaviour
         }
 
         Vector2 direction = target.position - barrelPivot.position;
-        
-        if (Physics2D.Raycast(transform.position, direction, direction.magnitude, aimMask).collider != null)
-        {
-            barrelPivot.rotation = Quaternion.Euler(barrelPivot.eulerAngles.x, barrelPivot.eulerAngles.y, defaultAngle);
+        var rayHit = Physics2D.Raycast(transform.position, direction.normalized, maxRange);
+        if (rayHit.transform == null || !rayHit.transform.gameObject.CompareTag("Player")) 
             return;
-        }
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         barrelPivot.rotation = Quaternion.Euler(barrelPivot.eulerAngles.x, barrelPivot.eulerAngles.y, Mathf.Clamp(angle, minMaxAngle.x, minMaxAngle.y));
@@ -56,10 +52,19 @@ public class Cannon : MonoBehaviour
         {
             Projectile temp = Instantiate(projectile, muzzle.position, muzzle.rotation);
             temp.Initiate(hitMask, speed, maxRange);
-
-            timeToFire = Time.time + (1 / fireRate);
+            StartCooldown();
         }
     }
 
+    void StartCooldown() => timeToFire = Time.time + (1 / fireRate);
+
     void SetTarget() => target = GameObject.FindGameObjectWithTag("Player").transform;
+
+    private void OnDrawGizmos()
+    {
+        if (target == null) return;
+        Gizmos.color = Color.red;
+        Vector2 direction = target.position - barrelPivot.position;
+        Gizmos.DrawRay(transform.position, direction.normalized * maxRange);
+    }
 }

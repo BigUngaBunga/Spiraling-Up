@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 GroundCheckPosition => (Vector2)transform.position + groundCheckOffset * transform.localScale;
     private Vector2 GroundCheckSize => groundCheckSize * transform.localScale;
 
+
     [Header("Debug")]
     [SerializeField] private bool drawDebug;
     [SerializeField] private bool printDebug;

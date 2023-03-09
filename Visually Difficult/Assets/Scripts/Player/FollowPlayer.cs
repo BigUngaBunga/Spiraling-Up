@@ -6,16 +6,17 @@ public class FollowPlayer : MonoBehaviour
     [Range(1f, 10f)]
     [SerializeField] private float interpolationSpeed;
     [SerializeField] private Vector3 offset;
+    private Vector3 TargetPosition => target.transform.position + offset;
 
     private void Start()
     {
         if (target == null)
             target = GameObject.Find("Player(Clone)");
+        transform.position = TargetPosition;
     }
 
     private void FixedUpdate()
     {
-        Vector3 targetPosition = target.transform.position + offset;
-        transform.position = Vector3.Lerp(transform.position, targetPosition, interpolationSpeed * Time.fixedDeltaTime);
+        transform.position = Vector3.Lerp(transform.position, TargetPosition, interpolationSpeed * Time.fixedDeltaTime);
     }
 }

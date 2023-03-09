@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5021257970882980284}
-  - component: {fileID: 2849929926091463241}
+  - component: {fileID: -3975283336691056881}
   - component: {fileID: 636277257123883126}
   - component: {fileID: 7956785850329396744}
   m_Layer: 0
-  m_Name: Door
+  m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,7 +35,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2849929926091463241
+--- !u!114 &-3975283336691056881
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,11 +44,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5459105008833187627}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17512b53b3233084d8b2c76902031efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 79dfee78d26804e4ebeee9ed2ee26468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  playerPrefab: {fileID: 2672675540961163704, guid: ba3fee3c9a7d12348a7085611b9b5810, type: 3}
 --- !u!212 &636277257123883126
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -201,7 +199,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.5566038, g: 0.50846606, b: 0.17590779, a: 1}
+  m_Color: {r: 0.8018868, g: 0.4503721, b: 0.10969208, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -190,7 +190,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  rayLength: 0.7
+  rayLength: 1
   speed: 10
   deceleration: 30
   acceleration: 40
