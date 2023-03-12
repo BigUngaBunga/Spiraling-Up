@@ -15,3 +15,5 @@ Logs/
 *.tmp
 *.user
 *.userprefs
+
+UserSettings/EditorUserSettings.asset
