@@ -28,7 +28,7 @@ public static class DataCollector
 
     public static void SaveData()
     {
-        //TODO: Change so as to send information
+        //TODO: Change so as to send information instead of saving to file
         File.WriteAllText($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{Path.DirectorySeparatorChar}VD.data", dataString.ToString());
     }
 }
