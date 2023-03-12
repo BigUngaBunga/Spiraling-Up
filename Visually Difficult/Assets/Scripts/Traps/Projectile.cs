@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile : Deadly
 {
     LayerMask hitMask;
 
@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour
         if (hit.collider != null)
         {
             if (hit.transform.TryGetComponent(out PlayerController player))
-                player.Kill("Shot by projectile");
+                player.Kill(deathReason);
 
             travelDistance = hit.distance;
 

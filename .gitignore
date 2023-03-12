@@ -8,5 +8,10 @@ Logs/
 .vs/
 .gradle/
 
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
 *.user
 *.userprefs

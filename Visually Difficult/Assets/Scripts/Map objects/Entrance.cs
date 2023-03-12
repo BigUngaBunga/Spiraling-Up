@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Entrance : MonoBehaviour
 {
@@ -9,5 +8,6 @@ public class Entrance : MonoBehaviour
     private void Awake()
     {
         Instantiate(playerPrefab, transform.position, Quaternion.identity);
+        DataCollector.StartLevel(SceneManager.GetActiveScene().buildIndex);
     }
 }

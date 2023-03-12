@@ -129,3 +129,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 995d068f48e3b7145832549ec8d15c76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathReason: Killed by bullet

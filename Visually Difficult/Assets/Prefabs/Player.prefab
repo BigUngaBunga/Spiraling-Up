@@ -203,8 +203,8 @@ MonoBehaviour:
   wallJumpDisableDuration: 0.1
   groundCheckOffset: {x: 0.18, y: -2.92}
   groundCheckSize: {x: 2.16, y: 0.3}
-  drawDebug: 1
-  printDebug: 1
+  drawDebug: 0
+  printDebug: 0
 --- !u!114 &2558933544155387674
 MonoBehaviour:
   m_ObjectHideFlags: 0

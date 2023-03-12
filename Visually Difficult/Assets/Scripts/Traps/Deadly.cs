@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Deadly : MonoBehaviour
 {
-    [SerializeField] string deathReason = "Unspecified";
+    [SerializeField] protected string deathReason = "Unspecified";
 
     private void OnCollisionEnter2D(Collision2D collision) => KillIfPlayer(collision.gameObject);
 

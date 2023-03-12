@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
@@ -33,16 +31,16 @@ public class PlayerAnimator : MonoBehaviour
 
     private void SetDirection(float x)
     {
-        if (x > 0)
-            direction = Direction.Left;
-        else if (x < 0)
+        if (x > minimumFlipVelocity)
             direction = Direction.Right;
+        else if (x < -minimumFlipVelocity)
+            direction = Direction.Left;
         else
             direction = Direction.Idle;
 
         animator.SetBool("IsRunning", direction != Direction.Idle);
 
-        if (direction == Direction.Left && transform.localScale.x < -minimumFlipVelocity || direction == Direction.Right && transform.localScale.x > minimumFlipVelocity)
+        if (direction == Direction.Right && transform.localScale.x < 0 || direction == Direction.Left && transform.localScale.x > 0)
         {
             Vector3 scale = transform.localScale;
             scale.x *= -1;

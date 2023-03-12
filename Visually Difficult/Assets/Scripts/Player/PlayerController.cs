@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
         jumpAction.performed += Jump;
         moveAction.Enable();
     }
+
     private IEnumerator ReenableInput()
     {
         yield return new WaitForSeconds(wallJumpDisableDuration);
@@ -90,6 +91,7 @@ public class PlayerController : MonoBehaviour
     {
         //TODO vänta lite innan man laddar om för att kunna använda någon effekt
         Print(deathReason);
+        DataCollector.IncreasePlayerDeaths();
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
     }
 
@@ -163,6 +165,7 @@ public class PlayerController : MonoBehaviour
     {
         if (jumpTimer <= 0)
             return;
+
         if (coyoteTimer < coyoteTime)
         {
             animator.Jump();
@@ -191,7 +194,8 @@ public class PlayerController : MonoBehaviour
     {
         if (inputDisabled || (!isGrounded && WallInDirection(direction)))
         {
-            Print("Can't move due to wall or disabled input");
+            if (printDebug)
+                Print("Can't move due to wall or disabled input");
             return;
         }
 
@@ -211,7 +215,6 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Ground Check
-
     private bool RayHit(RaycastHit2D raycast) => raycast.transform != null;
 
     private bool IsOnGround()
