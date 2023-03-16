@@ -148,6 +148,17 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(ReenableInput());
     }
 
+    private IEnumerator BeginJump()
+    {
+        animator.Jump();
+        coyoteTimer = coyoteTime;
+        jumpTimer = -1;
+        yield return new WaitForFixedUpdate();
+        SetY(jumpVelocity);
+        StartCoroutine(ContinueJump());
+
+    }
+
     private IEnumerator ContinueJump()
     {
         WaitForFixedUpdate wait = new ();
@@ -168,12 +179,7 @@ public class PlayerController : MonoBehaviour
 
         if (coyoteTimer < coyoteTime)
         {
-            animator.Jump();
-            SetY(jumpVelocity);
-            StartCoroutine(ContinueJump());
-
-            coyoteTimer = coyoteTime;
-            jumpTimer = -1;
+            StartCoroutine(BeginJump());
         }
         else
         {
@@ -187,6 +193,9 @@ public class PlayerController : MonoBehaviour
         isGrounded = false;
         jumpTimer -= Time.fixedDeltaTime;
     }
+
+
+
     #endregion
 
     #region Velocity

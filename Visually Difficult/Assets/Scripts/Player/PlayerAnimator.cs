@@ -19,15 +19,11 @@ public class PlayerAnimator : MonoBehaviour
         SetDirection(direction.x);
     }
 
-    public void Jump()
-    {
 
-    }
+    public void Jump() => animator.SetTrigger("Jump");
+    public void WallJump() => animator.SetTrigger("WallJump");
+    public void Land() => animator.SetTrigger("Land");
 
-    public void WallJump()
-    {
-
-    }
 
     private void SetDirection(float x)
     {
