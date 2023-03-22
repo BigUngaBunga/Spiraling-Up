@@ -23,13 +23,22 @@ public class Cannon : MonoBehaviour
     [Header("Effect")]
     [SerializeField] GameObject fireEffect;
     [SerializeField] float fireEffectDuration;
-    
+
+    [SerializeField] private Color justFiredColour;
+    [SerializeField] private Color rearmedColour;
+    private LineRenderer line;
+
     Transform target;
     float timeToFire;
 
     void Start()
     {
+        line = GetComponent<LineRenderer>();
         SetTarget();
+        StartCooldown();
+
+        line.positionCount = 2;
+        line.enabled = false;
     }
 
     void Update()
@@ -42,11 +51,20 @@ public class Cannon : MonoBehaviour
 
         Vector2 direction = target.position - barrelPivot.position;
         var rayHit = Physics2D.Raycast(transform.position, direction.normalized, maxRange);
-        if (rayHit.transform == null || !rayHit.transform.gameObject.CompareTag("Player")) 
+        bool hitPlayer = rayHit.transform != null && rayHit.transform.gameObject.CompareTag("Player");
+        line.enabled = hitPlayer;
+        if (!hitPlayer) 
             return;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         barrelPivot.rotation = Quaternion.Euler(barrelPivot.eulerAngles.x, barrelPivot.eulerAngles.y, Mathf.Clamp(angle, minMaxAngle.x, minMaxAngle.y));
+
+        line.SetPosition(0, muzzle.position);
+        line.SetPosition(1, target.position);
+        float reloadPercentage = Mathf.Clamp(1f + (Time.time - timeToFire) / (1f / fireRate), 0f, 1f);
+        Color lineColour = Color.Lerp(justFiredColour, rearmedColour, reloadPercentage);
+        line.startColor = lineColour;
+        line.endColor = lineColour;
 
         if (Time.time >= timeToFire)
         {
