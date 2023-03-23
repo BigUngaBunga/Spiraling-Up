@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [Header("Setup")]
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float rayLength;
+    [SerializeField] private Transform[] rayOrigins;
 
     [Header("Movement")]
     [SerializeField] private float speed = 10;
@@ -30,16 +32,13 @@ public class PlayerController : MonoBehaviour
     [Header("Ground check")]
     [SerializeField] private Vector2 groundCheckOffset;
     [SerializeField] private Vector2 groundCheckSize;
-    //TODO change to normal variables when debugging is done
     private Vector2 GroundCheckPosition => (Vector2)transform.position + groundCheckOffset * transform.localScale;
     private Vector2 GroundCheckSize => groundCheckSize * transform.localScale;
-
 
     [Header("Debug")]
     [SerializeField] private bool drawDebug;
     [SerializeField] private bool printDebug;
-    
-    private GameObject topRayOrigin, bottomRayOrigin;
+
     private bool isGrounded;
     private bool justJumped;
     private bool inputDisabled;
@@ -79,9 +78,6 @@ public class PlayerController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<PlayerAnimator>();
         PlayerInput input = GetComponent<PlayerInput>();
-
-        topRayOrigin = transform.Find("TopRay").gameObject;
-        bottomRayOrigin = transform.Find("BottomRay").gameObject;
 
         moveAction = input.actions["Move"];
         jumpAction = input.actions["Jump"];
@@ -224,22 +220,20 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Ground Check
-    private bool RayHit(RaycastHit2D raycast) => raycast.transform != null;
 
     private bool IsOnGround()
     {
         return Physics2D.OverlapBoxAll(GroundCheckPosition, GroundCheckSize, 0f, groundMask).Length > 0;
     }
 
+    private bool RayHitGround(Vector3 position, Vector3 direction) => Physics2D.Raycast(position, direction, rayLength, groundMask).transform != null;
     private bool WallInDirection(Vector2 direction)
     {
-        var topRay = Physics2D.Raycast(topRayOrigin.transform.position, direction, rayLength, groundMask);
-        var bottomRay = Physics2D.Raycast(bottomRayOrigin.transform.position, direction, rayLength, groundMask);
+        foreach (var ray in rayOrigins.Select(ray => ray.position))
+            if (RayHitGround(ray, direction))
+                return !IsOnGround();
 
-        bool hitTop = RayHit(topRay);
-        bool hitBottom = RayHit(bottomRay);
-
-        return !IsOnGround() && ( hitTop || hitBottom);
+        return false;
     }
     #endregion
 
@@ -251,15 +245,12 @@ public class PlayerController : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawCube(GroundCheckPosition, GroundCheckSize);
 
-            if (topRayOrigin != null && bottomRayOrigin != null)
+            foreach (var ray in rayOrigins.Select(ray => ray.position))
             {
                 Gizmos.color = Color.blue;
-                Gizmos.DrawRay(topRayOrigin.transform.position, Vector2.right * rayLength);
-                Gizmos.DrawRay(bottomRayOrigin.transform.position, Vector2.right * rayLength);
-
+                Gizmos.DrawRay(ray, Vector2.right * rayLength);
                 Gizmos.color = Color.yellow;
-                Gizmos.DrawRay(topRayOrigin.transform.position, Vector2.left * rayLength);
-                Gizmos.DrawRay(bottomRayOrigin.transform.position, Vector2.left * rayLength);
+                Gizmos.DrawRay(ray, Vector2.left * rayLength);
             }
         }
     }
