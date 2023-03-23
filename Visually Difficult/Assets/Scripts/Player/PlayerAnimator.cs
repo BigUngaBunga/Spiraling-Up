@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
 {
-    enum Direction{ Idle, Left, Right }
+    enum Direction { Idle, Left, Right }
 
     [SerializeField] private float minimumFlipVelocity;
 
@@ -19,11 +19,9 @@ public class PlayerAnimator : MonoBehaviour
         SetDirection(direction.x);
     }
 
-
     public void Jump() => animator.SetTrigger("Jump");
     public void WallJump() => animator.SetTrigger("WallJump");
-    public void Land() => animator.SetTrigger("Land");
-
+    public void SetGrounded(bool value) => animator.SetBool("Grounded", value);
 
     private void SetDirection(float x)
     {

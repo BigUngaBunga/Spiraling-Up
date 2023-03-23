@@ -129,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RobotRull_0
+      name: MidRobotRull_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 336
-        height: 600
+        height: 650
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,20 +143,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f65bec42c69fbf43b96f6ea67bf991a
-      internalID: 1077937698
+      spriteID: 28c4fd1d1619d214db79856863167446
+      internalID: 1342836396
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RobotRull_1
+      name: MidRobotRull_1
       rect:
         serializedVersion: 2
         x: 336
         y: 0
         width: 336
-        height: 600
+        height: 650
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,20 +164,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b85c4157aa8187646aad7a07f404c36f
-      internalID: -119555116
+      spriteID: 1197036a038b474489da697a14b0a515
+      internalID: -734888292
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RobotRull_2
+      name: MidRobotRull_2
       rect:
         serializedVersion: 2
         x: 672
         y: 0
         width: 336
-        height: 600
+        height: 650
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,20 +185,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a8053c460927064ab35e8de35491d87
-      internalID: -1841525160
+      spriteID: 8aeeb18423a97c541b2afdd193c6d9a2
+      internalID: -655678370
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RobotRull_3
+      name: MidRobotRull_3
       rect:
         serializedVersion: 2
         x: 1008
         y: 0
         width: 336
-        height: 600
+        height: 650
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,20 +206,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28a5e1f843486864fbd4c6d3a60bc263
-      internalID: 1446665151
+      spriteID: aee0a2394ba379246b7bb5f31a63828d
+      internalID: -664833687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RobotRull_4
+      name: MidRobotRull_4
       rect:
         serializedVersion: 2
         x: 1344
         y: 0
         width: 336
-        height: 600
+        height: 650
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,20 +227,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f2befceccbd0a6419a03dc2609a48d8
-      internalID: 1804825175
+      spriteID: 3f20c63e1a5bd9e4594a579844886223
+      internalID: -1360511317
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RobotRull_5
+      name: MidRobotRull_5
       rect:
         serializedVersion: 2
         x: 1680
         y: 0
         width: 336
-        height: 600
+        height: 650
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -248,20 +248,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f233a321b3f60b4184154303bc717f4
-      internalID: -1450806493
+      spriteID: 9b4a1e66e3331264f9e1e54b3eaf1425
+      internalID: 1140645091
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RobotRull_6
+      name: MidRobotRull_6
       rect:
         serializedVersion: 2
         x: 2016
         y: 0
         width: 336
-        height: 600
+        height: 650
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -269,20 +269,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ebbbd03e54d820479cbf310f2015827
-      internalID: -964406981
+      spriteID: 857430dd6873baa46903790abb71fc3a
+      internalID: 1954435339
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RobotRull_7
+      name: MidRobotRull_7
       rect:
         serializedVersion: 2
         x: 2352
         y: 0
         width: 336
-        height: 600
+        height: 650
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -290,8 +290,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95b6442dd91e0da479d593f9e3da3c8f
-      internalID: 1089897437
+      spriteID: a48188f12c4cd9f4b8b3e4eecb082fd7
+      internalID: 398696499
       vertices: []
       indices: 
       edges: []
@@ -307,14 +307,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      RobotRull_6: -964406981
-      RobotRull_5: -1450806493
-      RobotRull_4: 1804825175
-      RobotRull_2: -1841525160
-      RobotRull_3: 1446665151
-      RobotRull_7: 1089897437
-      RobotRull_1: -119555116
-      RobotRull_0: 1077937698
+      MidRobotRull_7: 398696499
+      MidRobotRull_1: -734888292
+      MidRobotRull_2: -655678370
+      MidRobotRull_6: 1954435339
+      MidRobotRull_4: -1360511317
+      MidRobotRull_5: 1140645091
+      MidRobotRull_3: -664833687
+      MidRobotRull_0: 1342836396
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

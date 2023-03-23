@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
 
     private new Rigidbody2D rigidbody;
     private PlayerAnimator animator;
+    private PlayerParticles particles;
 
     #region Input
     private InputAction moveAction;
@@ -78,6 +79,8 @@ public class PlayerController : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<PlayerAnimator>();
+        particles = GetComponent<PlayerParticles>();
+
         PlayerInput input = GetComponent<PlayerInput>();
 
         topRayOrigin = transform.Find("TopRay").gameObject;
@@ -100,7 +103,12 @@ public class PlayerController : MonoBehaviour
         coyoteTimer = isGrounded ? 0 : coyoteTimer + Time.fixedDeltaTime;
         AddMovement(moveAction.ReadValue<Vector2>());
         Jumping();
+
+        animator.SetGrounded(isGrounded);
         animator.UpdateAnimation(rigidbody.velocity);
+
+        particles.SetGrounded(isGrounded);
+        particles.UpdateSpeed(rigidbody.velocity.x, Time.fixedDeltaTime);
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -112,6 +120,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Vector2.Angle(collision.GetContact(i).normal, Vector2.up) < 46)
             {
+                particles.Land();
                 isGrounded = true;
                 return;
             }
@@ -128,7 +137,7 @@ public class PlayerController : MonoBehaviour
     {
         jumpTimer = jumpBuffer;
         justJumped = true;
-        Invoke(nameof(ResetJustJumped), Time.fixedDeltaTime);
+        Invoke(nameof(ResetJustJumped), Time.fixedDeltaTime * 2);
     }
 
     private void ResetJustJumped() => justJumped = false;
@@ -136,6 +145,8 @@ public class PlayerController : MonoBehaviour
     private void WallJump(Vector2 jumpDirection)
     {
         animator.WallJump();
+        particles.WallJump();
+
         float angle = wallJumpAngle * Mathf.Deg2Rad;
         Vector2 velocity = new Vector2(jumpDirection.x * Mathf.Sin(angle), Mathf.Cos(angle)) * wallJumpVelocity;
         rigidbody.velocity = velocity;
@@ -151,9 +162,13 @@ public class PlayerController : MonoBehaviour
     private IEnumerator BeginJump()
     {
         animator.Jump();
+        particles.Jump();
+
         coyoteTimer = coyoteTime;
         jumpTimer = -1;
+
         yield return new WaitForFixedUpdate();
+
         SetY(jumpVelocity);
         StartCoroutine(ContinueJump());
 
@@ -189,12 +204,9 @@ public class PlayerController : MonoBehaviour
                 WallJump(Vector2.left);
         }
 
-
         isGrounded = false;
         jumpTimer -= Time.fixedDeltaTime;
     }
-
-
 
     #endregion
 

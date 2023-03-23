@@ -61,7 +61,7 @@ public class Cannon : MonoBehaviour
 
         line.SetPosition(0, muzzle.position);
         line.SetPosition(1, target.position);
-        float reloadPercentage = Mathf.Clamp(1f + (Time.time - timeToFire) / (1f / fireRate), 0f, 1f);
+        float reloadPercentage = 1 - Mathf.Clamp((timeToFire - Time.time) / (1f / fireRate), 0f, 1f);
         Color lineColour = Color.Lerp(justFiredColour, rearmedColour, reloadPercentage);
         line.startColor = lineColour;
         line.endColor = lineColour;
