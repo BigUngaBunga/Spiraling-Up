@@ -24,7 +24,7 @@ public class MenuButton : MonoBehaviour
 
     private IEnumerator LerpScale(Vector3 targetScale)
     {
-        var wait = new WaitForEndOfFrame();
+        var wait = new WaitForSecondsRealtime(0.016f);
         Vector3 currentScale = transform.localScale;
         for (int i = 0; i <= lerpNumber; i++)
         {
