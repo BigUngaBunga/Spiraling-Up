@@ -301,7 +301,7 @@ MonoBehaviour:
     m_Neighbors: 
     m_NeighborPositions: []
     m_RuleTransform: 0
+  setting: 1
   highGround: {fileID: 11400000, guid: 241f54834c94e4743827286a3763d6cb, type: 2}
   midGround: {fileID: 11400000, guid: ccb572bae00615d4483613acc85d7540, type: 2}
   lowGround: {fileID: 11400000, guid: 1596f73f5b9dfcf419151d50fc432105, type: 2}
-  setting: 1

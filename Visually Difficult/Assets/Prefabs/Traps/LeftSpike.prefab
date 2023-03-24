@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2657336901980609788}
   - component: {fileID: 14102217069862374}
   - component: {fileID: 5999734868644273080}
+  - component: {fileID: 2066212704471290972}
   m_Layer: 7
   m_Name: LeftSpike
   m_TagString: Untagged
@@ -123,3 +124,18 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &2066212704471290972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4455900938073743761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf15416de8b50914781f4400e46f843f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highTexture: {fileID: 2800000, guid: 3f0624711e6193f49aee04e50f044b4f, type: 3}
+  midTexture: {fileID: 2800000, guid: 242fbbea1c18d524682baa7233122aa4, type: 3}
+  lowTexture: {fileID: 2800000, guid: 9b521f52318c17a408579fc0ccd15c8d, type: 3}

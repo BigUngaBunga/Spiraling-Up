@@ -1,17 +1,14 @@
-using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.WSA;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 using Setting = GraphicalSettings.Setting;
 
 [CreateAssetMenu]
 public class DynamicGroundTile : RuleTile {
+    public Setting setting;
     [SerializeField] private RuleTile highGround;
     [SerializeField] private RuleTile midGround;
     [SerializeField] private RuleTile lowGround;
-    [SerializeField] private Setting setting;
     private int lastSetting = -1;
     private RuleTile CurrentTile => GetCurrentTile();
     private RuleTile currentTile;
@@ -52,6 +49,12 @@ public class DynamicGroundTile : RuleTile {
     public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
     {
         CurrentTile.GetTileData(position, tilemap, ref tileData);
+    }
+
+    public override void RefreshTile(Vector3Int position, ITilemap tilemap)
+    {
+        GetCurrentTile();
+        base.RefreshTile(position, tilemap);
     }
 
     [MenuItem("Assets/Create/2D/Tiles/DynamicGroundTile")]

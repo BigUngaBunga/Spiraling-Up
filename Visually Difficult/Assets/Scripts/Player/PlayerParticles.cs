@@ -24,11 +24,17 @@ public class PlayerParticles : MonoBehaviour
     [SerializeField] float landEffectDuration;
     [SerializeField] Transform landEffectOrigin;
 
+    [SerializeField] bool particlesEnabled = true;
     bool accelerated;
     bool isGrounded;
 
     float oldSpeed;
     float fallTimer;
+
+    private void Start()
+    {
+        particlesEnabled = FindAnyObjectByType<VisualUpdater>().Settings == GraphicalSettings.Setting.High;
+    }
 
     void Update()
     {
@@ -43,7 +49,7 @@ public class PlayerParticles : MonoBehaviour
         if (Mathf.Abs(speed) > Mathf.Abs(oldSpeed) && Mathf.Abs(oldSpeed - speed) / delta >= minMoveSpeedDifference)
         {
             if (!accelerated)
-                Destroy(Instantiate(accelerateEffect, accelerateEffectOrigin.position, accelerateEffectOrigin.rotation), accelerateEffectDuration);
+                PlayEffect(accelerateEffect, accelerateEffectOrigin, accelerateEffectDuration);
             
             accelerated = true;
         }
@@ -62,7 +68,7 @@ public class PlayerParticles : MonoBehaviour
 
     void PlayEffect(GameObject effect, Transform origin, float duration)
     {
-        if (effect == null)
+        if (effect == null || !particlesEnabled)
             return;
 
         Destroy(Instantiate(effect, origin.position, origin.rotation), duration);

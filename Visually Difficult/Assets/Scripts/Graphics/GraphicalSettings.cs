@@ -5,7 +5,7 @@ using UnityEngine;
 public class GraphicalSettings : MonoBehaviour
 {
     public enum Setting { High, Medium , Low }
-    public List<Setting> settings = new();
+    [SerializeField] private List<Setting> settings = new();
     [SerializeField] private int numberOfLevels = 4;
 
     public void SetGraphicsPreset(int preset)
@@ -24,4 +24,6 @@ public class GraphicalSettings : MonoBehaviour
                 break;
         }
     }
+
+    public Setting GetLevelSetting(int level) => settings[level];
 }
