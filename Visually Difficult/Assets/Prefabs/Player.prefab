@@ -31,6 +31,37 @@ Transform:
   m_Father: {fileID: 2672675540961163708}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1910133936580862720
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3423195350596278429}
+  m_Layer: 0
+  m_Name: Wall Jump Effect Origin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3423195350596278429
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910133936580862720}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.06, y: -0.43, z: -5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2672675540961163708}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2188857959834509173
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,6 +136,7 @@ Transform:
   - {fileID: 4682807413303659062}
   - {fileID: 7195667238247614396}
   - {fileID: 5662211609449014250}
+  - {fileID: 3423195350596278429}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -257,7 +289,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  rayLength: 1
+  rayLength: 0.85
   rayOrigins:
   - {fileID: 2356935550013585408}
   - {fileID: 9200921972175431805}
@@ -309,9 +341,9 @@ MonoBehaviour:
   jumpEffect: {fileID: 4480775650279076124, guid: 5a7786f84be879240afcb546d213b68d, type: 3}
   jumpEffectDuration: 0.5
   jumpEffectOrigin: {fileID: 7195667238247614396}
-  wallJumpEffect: {fileID: 0}
-  wallJumpEffectDuration: 0
-  wallJumpEffectOrigin: {fileID: 0}
+  wallJumpEffect: {fileID: 4480775650279076124, guid: 5a7786f84be879240afcb546d213b68d, type: 3}
+  wallJumpEffectDuration: 0.4
+  wallJumpEffectOrigin: {fileID: 3423195350596278429}
   landEffect: {fileID: 4480775650279076124, guid: 7e60888bac08b9e4da53f6140e81fd3d, type: 3}
   minFallTime: 0.35
   landEffectDuration: 0.4

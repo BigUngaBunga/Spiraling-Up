@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using Settings = GraphicalSettings.Setting;
 
 public class PlayerParticles : MonoBehaviour
 {
@@ -24,7 +26,7 @@ public class PlayerParticles : MonoBehaviour
     [SerializeField] float landEffectDuration;
     [SerializeField] Transform landEffectOrigin;
 
-    [SerializeField] bool particlesEnabled = true;
+    Settings settings = Settings.Medium;
     bool accelerated;
     bool isGrounded;
 
@@ -33,7 +35,7 @@ public class PlayerParticles : MonoBehaviour
 
     private void Start()
     {
-        particlesEnabled = FindAnyObjectByType<VisualUpdater>().Settings == GraphicalSettings.Setting.High;
+        settings = FindAnyObjectByType<VisualUpdater>().Settings;
     }
 
     void Update()
@@ -49,7 +51,7 @@ public class PlayerParticles : MonoBehaviour
         if (Mathf.Abs(speed) > Mathf.Abs(oldSpeed) && Mathf.Abs(oldSpeed - speed) / delta >= minMoveSpeedDifference)
         {
             if (!accelerated)
-                PlayEffect(accelerateEffect, accelerateEffectOrigin, accelerateEffectDuration);
+                PlayEffect(accelerateEffect, accelerateEffectOrigin, accelerateEffectDuration, Settings.Medium);
             
             accelerated = true;
         }
@@ -63,14 +65,20 @@ public class PlayerParticles : MonoBehaviour
 
     public void SetGrounded(bool value) => isGrounded = value;
     public void Jump() => PlayEffect(jumpEffect, jumpEffectOrigin, jumpEffectDuration);
-    public void WallJump() => PlayEffect(wallJumpEffect, wallJumpEffectOrigin, wallJumpEffectDuration);
+    public void WallJump() => StartCoroutine(PlayEffect(wallJumpEffect, wallJumpEffectOrigin, wallJumpEffectDuration, 0.032f, Settings.Medium));
     public void Land() => PlayEffect(fallTimer >= minFallTime ? landEffect : null, landEffectOrigin, landEffectDuration);
 
-    void PlayEffect(GameObject effect, Transform origin, float duration)
+    void PlayEffect(GameObject effect, Transform origin, float duration, Settings minimumLevel = Settings.High)
     {
-        if (effect == null || !particlesEnabled)
+        if (effect == null || settings > minimumLevel)
             return;
 
         Destroy(Instantiate(effect, origin.position, origin.rotation), duration);
+    }
+
+    IEnumerator PlayEffect(GameObject effect, Transform origin, float duration, float delay, Settings minimumLevel = Settings.High)
+    {
+        yield return new WaitForSeconds(delay);
+        PlayEffect(effect, origin, duration, minimumLevel);
     }
 }
