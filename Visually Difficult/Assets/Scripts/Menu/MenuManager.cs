@@ -12,18 +12,26 @@ public class MenuManager : MonoBehaviour
         Cursor.visible= true;
         Cursor.lockState = CursorLockMode.Confined;
         pauseMenu.SetActive(false);
+        CreateGraphicalSettings();
     }
 
     public void ExitGame() => Application.Quit();
 
     public void StartGame()
     {
-        //TODO bestäm hur olika testscenarion skall väljas sedan starta spelet
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         pauseMenu.SetActive(true);
 
         int tutorialIndex = 1;
         SceneManager.LoadSceneAsync(tutorialIndex);
+    }
+
+    private void CreateGraphicalSettings()
+    {
+        GameObject gameObject = new GameObject("Settings", typeof(DontDestroy));
+        var settings = gameObject.AddComponent<GraphicalSettings>();
+        settings.SetGraphicsPreset(Random.Range(0, 3));
     }
 }
