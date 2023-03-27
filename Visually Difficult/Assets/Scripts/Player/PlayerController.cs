@@ -56,14 +56,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnDisable()
     {
-        jumpAction.performed -= Jump;
+        jumpAction.started -= Jump;
         moveAction.Disable();
 
     }
 
     private void OnEnable()
     {
-        jumpAction.performed += Jump;
+        jumpAction.started += Jump;
         moveAction.Enable();
     }
 
@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour
         //TODO vänta lite innan man laddar om för att kunna använda någon effekt
         Print(deathReason);
         DataCollector.IncreasePlayerDeaths();
+        DataCollector.RestartAttemptTimer();
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
     }
 

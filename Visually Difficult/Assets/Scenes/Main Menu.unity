@@ -584,11 +584,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2511543404264293095, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
       propertyPath: m_text
-      value: Resolution
+      value: Sound 100%
       objectReference: {fileID: 0}
     - target: {fileID: 2511543404381048357, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
       propertyPath: m_Name
-      value: Resolution
+      value: Sound
       objectReference: {fileID: 0}
     - target: {fileID: 2511543404381048358, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
       propertyPath: m_Pivot.x
@@ -974,7 +974,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2511543404264293095, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
       propertyPath: m_text
-      value: Volume
+      value: Music 100%
       objectReference: {fileID: 0}
     - target: {fileID: 2511543404264293095, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
       propertyPath: m_margin.z
@@ -982,7 +982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2511543404381048357, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
       propertyPath: m_Name
-      value: Volume
+      value: Music
       objectReference: {fileID: 0}
     - target: {fileID: 2511543404381048358, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
       propertyPath: m_Pivot.x
