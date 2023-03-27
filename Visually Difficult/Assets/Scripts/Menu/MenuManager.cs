@@ -25,6 +25,7 @@ public class MenuManager : MonoBehaviour
         pauseMenu.SetActive(true);
 
         int tutorialIndex = 1;
+        DataCollector.StartLevel(tutorialIndex);
         SceneManager.LoadSceneAsync(tutorialIndex);
     }
 
