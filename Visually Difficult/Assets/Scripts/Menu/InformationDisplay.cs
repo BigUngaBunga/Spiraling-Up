@@ -13,6 +13,7 @@ public class InformationDisplay : MonoBehaviour
 
     private StartInformation startScreen;
     private EndInformation endScreen;
+    private RunInformation runInfo;
 
     public UnityEvent SkippedEndEvent => skippedEndEvent;
     private readonly UnityEvent skippedEndEvent = new();
@@ -29,16 +30,19 @@ public class InformationDisplay : MonoBehaviour
         EnableSkip();
         if (pauseMenu != null)
             pauseMenu.enabled = false;
+        runInfo.Deactivate();
         endScreen.Activate();
     }
     
     private void Awake()
     {
         startScreen = GetComponentInChildren<StartInformation>();
-        endScreen= GetComponentInChildren<EndInformation>();
+        endScreen = GetComponentInChildren<EndInformation>();
+        runInfo = GetComponentInChildren<RunInformation>();
         jumpAction = GetComponent<PlayerInput>().actions["Jump"];
         startScreen.gameObject.SetActive(false);
         endScreen.gameObject.SetActive(false);
+        runInfo.gameObject.SetActive(false);
         DisableSkip();
     }
 
@@ -65,6 +69,7 @@ public class InformationDisplay : MonoBehaviour
         {
             DisableSkip();
             startScreen.Deactivate();
+            runInfo.Activate();
             playerController.enabled = true;
             if (pauseMenu != null)
                 pauseMenu.enabled = true;

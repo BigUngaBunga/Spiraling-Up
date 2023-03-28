@@ -13,7 +13,7 @@ public static class DataCollector
     private static readonly StringBuilder dataString = new ();
 
     public static int DeathCount => deathCount;
-    public static float AttemptTime => Time.time - attemptStartTime;
+    public static float AttemptTime => RoundToDecimal(Time.time - attemptStartTime, 2);
     public static void IncreasePlayerDeaths() => deathCount++;
     public static void RestartAttemptTimer() => attemptStartTime = Time.time;
     
@@ -28,11 +28,16 @@ public static class DataCollector
     }
 
 
-    public static void EndLevel() => dataString.Append($"{currentLevel}: Deaths={deathCount};Time={Time.time - sceneStartTime}{Environment.NewLine}");
+    public static void EndLevel() => dataString.Append($"{currentLevel}: Deaths={deathCount};Time={RoundToDecimal(Time.time - sceneStartTime)}{Environment.NewLine}");
 
     public static void SaveData()
     {
         //TODO: Change so as to send information instead of saving to file
         File.WriteAllText($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{Path.DirectorySeparatorChar}VD.data", dataString.ToString());
+    }
+
+    private static float RoundToDecimal(float time, int decimals = 1)
+    {
+        return Mathf.Round(time * Mathf.Pow(10, decimals)) * Mathf.Pow(10, -decimals);
     }
 }
