@@ -5,14 +5,17 @@ using UnityEngine;
 
 public static class DataCollector
 {
-    static int deathCount;
-    static int currentLevel;
+    private static int deathCount;
+    private static int currentLevel;
+    private static float sceneStartTime;
+    private static float attemptStartTime;
 
-    static float sceneStartTime;
+    private static readonly StringBuilder dataString = new ();
 
-    static readonly StringBuilder dataString = new ();
-
+    public static int DeathCount => deathCount;
+    public static float AttemptTime => RoundToDecimal(Time.time - attemptStartTime, 2);
     public static void IncreasePlayerDeaths() => deathCount++;
+    public static void RestartAttemptTimer() => attemptStartTime = Time.time;
     
     public static void StartLevel(int level)
     {
@@ -21,14 +24,20 @@ public static class DataCollector
 
         currentLevel = level;
         deathCount = 0;
-        sceneStartTime = Time.time;
+        attemptStartTime = sceneStartTime = Time.time;
     }
 
-    public static void EndLevel() => dataString.Append($"{currentLevel}: Deaths={deathCount};Time={Time.time - sceneStartTime}{Environment.NewLine}");
+
+    public static void EndLevel() => dataString.Append($"{currentLevel}: Deaths={deathCount};Time={RoundToDecimal(Time.time - sceneStartTime)}{Environment.NewLine}");
 
     public static void SaveData()
     {
         //TODO: Change so as to send information instead of saving to file
         File.WriteAllText($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{Path.DirectorySeparatorChar}VD.data", dataString.ToString());
+    }
+
+    private static float RoundToDecimal(float time, int decimals = 1)
+    {
+        return Mathf.Round(time * Mathf.Pow(10, decimals)) * Mathf.Pow(10, -decimals);
     }
 }

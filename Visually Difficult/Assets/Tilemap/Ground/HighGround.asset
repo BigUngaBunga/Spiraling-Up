@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
-  m_Name: Ground
+  m_Script: {fileID: 11500000, guid: 5c6d58cfde61c6d4aa9880bdabdf5495, type: 3}
+  m_Name: HighGround
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: 0}
-  m_DefaultGameObject: {fileID: 5670844074049095784, guid: 99471c8a42c957e4999495a36d82cf01, type: 3}
+  m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 0
   m_TilingRules:
   - m_Id: 37

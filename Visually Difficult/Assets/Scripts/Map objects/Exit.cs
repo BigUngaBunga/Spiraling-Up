@@ -3,18 +3,30 @@ using UnityEngine.SceneManagement;
 
 public class Exit : MonoBehaviour
 {
+    private InformationDisplay informationDisplay;
     bool hasRun = false;
+
+    private void Awake()
+    {
+        informationDisplay = FindAnyObjectByType<InformationDisplay>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!hasRun && collision.gameObject.CompareTag("Player"))
-            SwitchToNextMap();
+            ReachedEnd();
+            //SwitchToNextMap();
+    }
+
+    private void ReachedEnd()
+    {
+        DataCollector.EndLevel();
+        informationDisplay.SkippedEndEvent.AddListener(SwitchToNextMap);
+        informationDisplay.ActivateEnd();
     }
 
     private void SwitchToNextMap()
     {
-        DataCollector.EndLevel();
-
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
         if (SceneManager.sceneCountInBuildSettings > sceneIndex + 1)
         {

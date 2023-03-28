@@ -57,28 +57,6 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "1bae16ee-fdd0-4571-9874-fe615504b8e6",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d28b4f50-2eb9-47bf-b25f-9f9f6174c12b",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "AD",
                     "id": "a33269c4-f8b7-4ad9-af1e-28f37dfc7090",
                     "path": "2DVector",
