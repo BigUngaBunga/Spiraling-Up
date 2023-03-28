@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
-
+    [SerializeField] private Scrollbar presetToggle;
+    private GraphicalSettings settings;
     private void Start()
     {
         Cursor.visible= true;
@@ -32,7 +34,13 @@ public class MenuManager : MonoBehaviour
     private void CreateGraphicalSettings()
     {
         GameObject gameObject = new GameObject("Settings", typeof(DontDestroy));
-        var settings = gameObject.AddComponent<GraphicalSettings>();
+        settings = gameObject.AddComponent<GraphicalSettings>();
         settings.SetGraphicsPreset(Random.Range(0, 3));
+    }
+
+    public void UpdateGraphicalPreset()
+    {
+        int presets = 3;
+        settings.SetGraphicsPreset(Mathf.Min((int)(presetToggle.value * presets), presets - 1));
     }
 }
