@@ -25,11 +25,14 @@ public class Cannon : MonoBehaviour
     [SerializeField] GameObject fireEffect;
     [SerializeField] float fireEffectDuration;
 
-    [SerializeField] private Color justFiredColour;
-    [SerializeField] private Color rearmedColour;
-    private LineRenderer line;
+    [SerializeField] Color justFiredColour;
+    [SerializeField] Color rearmedColour;
+
+    LineRenderer line;
+    Animator anim;
 
     Transform target;
+    
     float timeToFire;
 
     Settings setting = Settings.Medium;
@@ -39,6 +42,8 @@ public class Cannon : MonoBehaviour
         setting = FindAnyObjectByType<VisualUpdater>().Settings;
 
         line = GetComponent<LineRenderer>();
+        anim = GetComponent<Animator>();
+
         SetTarget();
         StartCooldown();
 
@@ -86,6 +91,9 @@ public class Cannon : MonoBehaviour
 
             if (fireEffect != null && setting == Settings.High)
                 Destroy(Instantiate(fireEffect, muzzle.position, muzzle.rotation), fireEffectDuration);
+
+            if (anim != null)
+                anim.SetTrigger("Fire");
         }
     }
 

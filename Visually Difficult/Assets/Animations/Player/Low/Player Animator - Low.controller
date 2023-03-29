@@ -107,7 +107,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 737ee04add8afd14faab86e6fa319171, type: 2}
+  m_Motion: {fileID: 7400000, guid: 075e2069e9e6d7e459e3753fbc6a22be, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -160,7 +160,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b0c4a499c20c63c4aa24c1926fd82382, type: 2}
+  m_Motion: {fileID: 7400000, guid: 41b28c1fe78f4204facff3a8bc67defb, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -247,7 +247,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlayerAnimator - Low
+  m_Name: Player Animator - Low
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: IsRunning
@@ -359,7 +359,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: afc291c671234b040bc25b835a3eea21, type: 2}
+  m_Motion: {fileID: 7400000, guid: 2407d68c0ec05b74d80577a1e3181753, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -386,7 +386,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: f128e02890cc4ba40ab9feea2848f82c, type: 2}
+  m_Motion: {fileID: 7400000, guid: 00e5b43dbd9e6d34fa4c4dcceaafa988, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -414,7 +414,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 1385d6b0e18cfbe418e65f1ce093cc0b, type: 2}
+  m_Motion: {fileID: 7400000, guid: 2afda20e13c6b4e4aa8f50f6ee2af7de, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

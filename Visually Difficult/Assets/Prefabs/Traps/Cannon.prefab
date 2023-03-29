@@ -127,7 +127,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   angleOffset: 90
-  defaultAngle: 0
   minMaxAngle: {x: -179, y: -1}
   projectile: {fileID: -2556588529834660950, guid: 13e35176fb836014d914098437526806, type: 3}
   hitMask:
@@ -252,8 +251,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highAnimation: {fileID: 9100000, guid: 7474adffc3eecbb4fb0810d387f119f9, type: 2}
-  midAnimation: {fileID: 9100000, guid: a6011d6a7759c254587bbdc7ee2f1043, type: 2}
-  lowAnimation: {fileID: 9100000, guid: 04b966f0112036840a6b9dd8ec9cdf31, type: 2}
+  midAnimation: {fileID: 9100000, guid: 8cbe8ff97eee5b3489f9fb1b6e244e1a, type: 2}
+  lowAnimation: {fileID: 9100000, guid: 6de530583baa20148899b67483a91619, type: 2}
 --- !u!1 &3775093329343613771
 GameObject:
   m_ObjectHideFlags: 0

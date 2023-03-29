@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HighIdle
+  m_Name: Cannon Idle - Mid
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,7 +20,7 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 1789719747, guid: 8dcd01bb7726ecd499af70d49940b46c, type: 3}
+      value: {fileID: 1929095999, guid: 8d55328729782be4288749b10e5c335b, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -40,7 +40,7 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 1789719747, guid: 8dcd01bb7726ecd499af70d49940b46c, type: 3}
+    - {fileID: 1929095999, guid: 8d55328729782be4288749b10e5c335b, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

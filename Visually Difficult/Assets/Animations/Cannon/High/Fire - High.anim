@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MidFire
+  m_Name: Fire - High
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,11 +20,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -1317881141, guid: 8d55328729782be4288749b10e5c335b, type: 3}
+      value: {fileID: -1742729276, guid: 8dcd01bb7726ecd499af70d49940b46c, type: 3}
     - time: 0.083333336
-      value: {fileID: 595835612, guid: 8d55328729782be4288749b10e5c335b, type: 3}
+      value: {fileID: 220498900, guid: 8dcd01bb7726ecd499af70d49940b46c, type: 3}
     - time: 0.16666667
-      value: {fileID: -94247475, guid: 8d55328729782be4288749b10e5c335b, type: 3}
+      value: {fileID: -2093860886, guid: 8dcd01bb7726ecd499af70d49940b46c, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -44,9 +44,9 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -1317881141, guid: 8d55328729782be4288749b10e5c335b, type: 3}
-    - {fileID: 595835612, guid: 8d55328729782be4288749b10e5c335b, type: 3}
-    - {fileID: -94247475, guid: 8d55328729782be4288749b10e5c335b, type: 3}
+    - {fileID: -1742729276, guid: 8dcd01bb7726ecd499af70d49940b46c, type: 3}
+    - {fileID: 220498900, guid: 8dcd01bb7726ecd499af70d49940b46c, type: 3}
+    - {fileID: -2093860886, guid: 8dcd01bb7726ecd499af70d49940b46c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
