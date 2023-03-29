@@ -136,6 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf15416de8b50914781f4400e46f843f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highTexture: {fileID: 2800000, guid: f1411ac24eba0ed4b944f0ba8e828ae0, type: 3}
-  midTexture: {fileID: 2800000, guid: 9e31834fff15afb42a17e21aa75f64c5, type: 3}
-  lowTexture: {fileID: 2800000, guid: 2af55d35bb6dafe4cb6fe89485f22ab3, type: 3}
+  highTexture: {fileID: 21300000, guid: f1411ac24eba0ed4b944f0ba8e828ae0, type: 3}
+  midTexture: {fileID: 21300000, guid: 9e31834fff15afb42a17e21aa75f64c5, type: 3}
+  lowTexture: {fileID: 21300000, guid: 2af55d35bb6dafe4cb6fe89485f22ab3, type: 3}

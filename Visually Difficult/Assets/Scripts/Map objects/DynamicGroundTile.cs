@@ -1,4 +1,4 @@
-using UnityEditor;
+//using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Setting = GraphicalSettings.Setting;
@@ -57,12 +57,12 @@ public class DynamicGroundTile : RuleTile {
         base.RefreshTile(position, tilemap);
     }
 
-    [MenuItem("Assets/Create/2D/Tiles/DynamicGroundTile")]
-    public static void CreateRoadTile()
-    {
-        string path = EditorUtility.SaveFilePanelInProject("Save Dynamic Ground Tile", "New Dynamic Ground Tile", "Asset", "Save Dynamic Ground Tile", "Assets");
-        if (path == "")
-            return;
-        AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<DynamicGroundTile>(), path);
-    }
+    //[MenuItem("Assets/Create/2D/Tiles/DynamicGroundTile")]
+    //public static void CreateRoadTile()
+    //{
+    //    string path = EditorUtility.SaveFilePanelInProject("Save Dynamic Ground Tile", "New Dynamic Ground Tile", "Asset", "Save Dynamic Ground Tile", "Assets");
+    //    if (path == "")
+    //        return;
+    //    AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<DynamicGroundTile>(), path);
+    //}
 }

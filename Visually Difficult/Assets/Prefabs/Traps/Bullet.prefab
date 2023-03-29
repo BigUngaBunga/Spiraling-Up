@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7407097600136636939}
   - component: {fileID: 7407097600136636938}
+  - component: {fileID: 6088614806729506370}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -73,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.7264151, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 7f13b0ac0cb90e141b5d4d6d76f86429, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -84,6 +85,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6088614806729506370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7407097600136636980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf15416de8b50914781f4400e46f843f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highTexture: {fileID: 21300000, guid: 2ef1a11f488c5144dbac9e7ece0ac945, type: 3}
+  midTexture: {fileID: 21300000, guid: 7f13b0ac0cb90e141b5d4d6d76f86429, type: 3}
+  lowTexture: {fileID: 21300000, guid: 8a97ad743cabaec4395e6b8d8db3bbc6, type: 3}
 --- !u!1 &7407097600248442459
 GameObject:
   m_ObjectHideFlags: 0
