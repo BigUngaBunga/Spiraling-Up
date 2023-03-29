@@ -146,3 +146,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathReason: Killed by bullet
+  impactEffect: {fileID: 1855088094690513756, guid: 9dd661252137f964fbb86a52fbbdaa1b, type: 3}
+  impactEffectDuration: 0.3

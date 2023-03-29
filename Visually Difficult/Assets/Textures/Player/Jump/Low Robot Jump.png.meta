@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 34bc7d9a7a06b9948aa0ff370e75d219
+guid: 9431bbea8974ebb41aeefd45ac920f69
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -113,11 +113,23 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MidRobotHopp_0
+      name: EnkelRobotHopp_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +143,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6cd0dd59f8653a04195e932d8210cc36
-      internalID: -746826300
+      spriteID: 7a8dd6d3c2939114cb63e0ab0ef37ca6
+      internalID: -1814833013
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MidRobotHopp_1
+      name: EnkelRobotHopp_1
       rect:
         serializedVersion: 2
         x: 336
@@ -152,14 +164,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69ee6f5d82843f74e8852af8ab2f9c27
-      internalID: -357834166
+      spriteID: 757bf496d6022e740a6cd52cf1011c1b
+      internalID: 490536073
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MidRobotHopp_2
+      name: EnkelRobotHopp_2
       rect:
         serializedVersion: 2
         x: 672
@@ -173,14 +185,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa49727d42f873f41b3b9803b4ff0072
-      internalID: -1207088200
+      spriteID: 9c144629c8cd58b41aa75fc6548ec85c
+      internalID: -1375618639
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MidRobotHopp_3
+      name: EnkelRobotHopp_3
       rect:
         serializedVersion: 2
         x: 1008
@@ -194,14 +206,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9b0dd338de46274b8bf809230c12982
-      internalID: -52749321
+      spriteID: f48ccdce6c8acb44eab63c71646d9d6a
+      internalID: -256439515
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MidRobotHopp_4
+      name: EnkelRobotHopp_4
       rect:
         serializedVersion: 2
         x: 1344
@@ -215,14 +227,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1c48a9efb354c346913c5c9ec9e0ac7
-      internalID: -870940061
+      spriteID: 0a00c3f8660d1e04abe77246a1f691fd
+      internalID: -713638466
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MidRobotHopp_5
+      name: EnkelRobotHopp_5
       rect:
         serializedVersion: 2
         x: 1680
@@ -236,14 +248,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93876eccb9a424e4eb560f9619ccb3c3
-      internalID: -538721559
+      spriteID: bcbb7321dab89c744894f0ee84c76269
+      internalID: 1750005550
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MidRobotHopp_6
+      name: EnkelRobotHopp_6
       rect:
         serializedVersion: 2
         x: 2016
@@ -257,14 +269,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49747a53e997c064284dab67cc6157ce
-      internalID: -357953188
+      spriteID: ef290681d4a593f41b2f8cc945704f0c
+      internalID: -1973422510
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MidRobotHopp_7
+      name: EnkelRobotHopp_7
       rect:
         serializedVersion: 2
         x: 2352
@@ -278,8 +290,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b00b4915f06a3e9428e8661a2aa78011
-      internalID: -1393803208
+      spriteID: a49357af1965279418437671d051870c
+      internalID: -599315021
       vertices: []
       indices: 
       edges: []
@@ -295,14 +307,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      MidRobotHopp_1: -357834166
-      MidRobotHopp_5: -538721559
-      MidRobotHopp_7: -1393803208
-      MidRobotHopp_0: -746826300
-      MidRobotHopp_2: -1207088200
-      MidRobotHopp_4: -870940061
-      MidRobotHopp_6: -357953188
-      MidRobotHopp_3: -52749321
+      EnkelRobotHopp_5: 1750005550
+      EnkelRobotHopp_1: 490536073
+      EnkelRobotHopp_2: -1375618639
+      EnkelRobotHopp_0: -1814833013
+      EnkelRobotHopp_7: -599315021
+      EnkelRobotHopp_6: -1973422510
+      EnkelRobotHopp_3: -256439515
+      EnkelRobotHopp_4: -713638466
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

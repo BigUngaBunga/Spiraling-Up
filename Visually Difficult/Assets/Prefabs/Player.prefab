@@ -134,11 +134,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2672675540961163708}
   - component: {fileID: 2672675540961163711}
-  - component: {fileID: 4203034516211026995}
+  - component: {fileID: 164760699446409339}
   - component: {fileID: 2672675540961163698}
   - component: {fileID: 2672675540961163709}
   - component: {fileID: 2558933544155387674}
   - component: {fileID: -1922336991613180267}
+  - component: {fileID: 3353741820807431877}
   - component: {fileID: 2672675540961163705}
   - component: {fileID: 3280900724099407210}
   m_Layer: 0
@@ -225,7 +226,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &4203034516211026995
+--- !u!95 &164760699446409339
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -385,6 +386,21 @@ MonoBehaviour:
   deathEffect: {fileID: 1855088094690513756, guid: a1b051e277bd31543baa264316394ec1, type: 3}
   deathDelay: 0.5
   deathEffectOrigin: {fileID: 2672675540961163708}
+--- !u!114 &3353741820807431877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2672675540961163704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c537a843e95fff45ab2f261dc28ca4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highAnimation: {fileID: 9100000, guid: 29ed0804e545ec748897e3dd19a7af62, type: 2}
+  midAnimation: {fileID: 9100000, guid: 48a6a4bf43219a44690e6404027a2f0a, type: 2}
+  lowAnimation: {fileID: 9100000, guid: 7bbb0bdd85df90743955f42b3a32829d, type: 2}
 --- !u!50 &2672675540961163705
 Rigidbody2D:
   serializedVersion: 4

@@ -9,7 +9,7 @@ public class Cannon : MonoBehaviour
     [SerializeField] LayerMask aimMask;
 
     [Header("Rotation")]
-    [SerializeField] float defaultAngle;
+    [SerializeField] float angleOffset;
     [SerializeField] Vector2 minMaxAngle = new (-180, 180);
 
     [Header("Projectile")]
@@ -32,11 +32,11 @@ public class Cannon : MonoBehaviour
     Transform target;
     float timeToFire;
 
-    Settings settings = Settings.Medium;
+    Settings setting = Settings.Medium;
 
     void Start()
     {
-        settings = FindAnyObjectByType<VisualUpdater>().Settings;
+        setting = FindAnyObjectByType<VisualUpdater>().Settings;
 
         line = GetComponent<LineRenderer>();
         SetTarget();
@@ -58,11 +58,18 @@ public class Cannon : MonoBehaviour
         var rayHit = Physics2D.Raycast(transform.position, direction.normalized, maxRange);
         bool hitPlayer = rayHit.transform != null && rayHit.transform.gameObject.CompareTag("Player");
         line.enabled = hitPlayer;
+
         if (!hitPlayer) 
             return;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        barrelPivot.rotation = Quaternion.Euler(barrelPivot.eulerAngles.x, barrelPivot.eulerAngles.y, Mathf.Clamp(angle, minMaxAngle.x, minMaxAngle.y));
+        if (angle < minMaxAngle.x || angle > minMaxAngle.y)
+        {
+            line.enabled = false;
+            return;
+        }
+
+        barrelPivot.rotation = Quaternion.Euler(barrelPivot.eulerAngles.x, barrelPivot.eulerAngles.y, Mathf.Clamp(angle, minMaxAngle.x, minMaxAngle.y) + angleOffset);
 
         line.SetPosition(0, muzzle.position);
         line.SetPosition(1, target.position);
@@ -74,10 +81,10 @@ public class Cannon : MonoBehaviour
         if (Time.time >= timeToFire)
         {
             Projectile temp = Instantiate(projectile, muzzle.position, muzzle.rotation);
-            temp.Initiate(hitMask, speed, maxRange);
+            temp.Initiate(hitMask, speed, maxRange, setting);
             StartCooldown();
 
-            if (fireEffect != null && settings == Settings.High)
+            if (fireEffect != null && setting == Settings.High)
                 Destroy(Instantiate(fireEffect, muzzle.position, muzzle.rotation), fireEffectDuration);
         }
     }

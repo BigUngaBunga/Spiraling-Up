@@ -122,9 +122,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   muzzle: {fileID: 3775093329343613768}
+  barrelPivot: {fileID: 3775093328702910360}
   aimMask:
     serializedVersion: 2
     m_Bits: 64
+  angleOffset: 90
+  defaultAngle: 0
   minMaxAngle: {x: -179, y: -1}
   projectile: {fileID: -2556588529834660950, guid: 13e35176fb836014d914098437526806, type: 3}
   hitMask:

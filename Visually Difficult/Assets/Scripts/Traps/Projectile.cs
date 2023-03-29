@@ -1,7 +1,11 @@
 using UnityEngine;
+using Setting = GraphicalSettings.Setting;
 
 public class Projectile : Deadly
 {
+    [SerializeField] GameObject impactEffect;
+    [SerializeField] float impactEffectDuration;
+
     LayerMask hitMask;
 
     float speed;
@@ -9,11 +13,14 @@ public class Projectile : Deadly
 
     float distanceTraveled;
 
-    public void Initiate(LayerMask hitMask, float speed, float maxRange)
+    Setting setting = Setting.Medium;
+
+    public void Initiate(LayerMask hitMask, float speed, float maxRange, Setting setting)
     {
         this.hitMask = hitMask;
         this.speed = speed;
         this.maxRange = maxRange;
+        this.setting = setting;
     }
 
     void Update()
@@ -28,6 +35,9 @@ public class Projectile : Deadly
 
             travelDistance = hit.distance;
 
+            if (setting == Setting.High && impactEffect != null && player == null)
+                Destroy(Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal)), impactEffectDuration);
+            
             Destroy(gameObject);
         }
         else if (distanceTraveled > maxRange)

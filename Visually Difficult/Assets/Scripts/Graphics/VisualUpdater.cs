@@ -19,7 +19,7 @@ public class VisualUpdater : MonoBehaviour
         catch (System.Exception)
         {
             Debug.LogWarning("No \"Settings\" object found");
-            Settings = Setting.Medium;
+            Settings = setting;
         }
         tile.setting = Settings;
         GameObject.Find("Tilemap").GetComponent<Tilemap>().RefreshAllTiles();
