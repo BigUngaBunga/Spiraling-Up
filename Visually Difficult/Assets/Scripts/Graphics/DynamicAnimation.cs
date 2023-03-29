@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class DynamicAnimation : MonoBehaviour
 {
-    [SerializeField] private AnimatorController highAnimation;
-    [SerializeField] private AnimatorController midAnimation;
-    [SerializeField] private AnimatorController lowAnimation;
+    [SerializeField] private RuntimeAnimatorController highAnimation;
+    [SerializeField] private RuntimeAnimatorController midAnimation;
+    [SerializeField] private RuntimeAnimatorController lowAnimation;
     private Animator animator;
     private VisualUpdater visualUpdater;
 
@@ -24,13 +21,13 @@ public class DynamicAnimation : MonoBehaviour
         animator.runtimeAnimatorController = PickAnimatorController();
     }
 
-    private AnimatorController PickAnimatorController()
+    private RuntimeAnimatorController PickAnimatorController()
     {
         return visualUpdater.Settings switch
         {
             GraphicalSettings.Setting.High => highAnimation,
-            GraphicalSettings.Setting.Low => midAnimation,
-            _ => lowAnimation,
+            GraphicalSettings.Setting.Low => lowAnimation,
+            _ => midAnimation,
         };
     }
 }

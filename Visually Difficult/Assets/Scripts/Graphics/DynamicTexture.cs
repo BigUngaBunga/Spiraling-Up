@@ -2,26 +2,26 @@ using UnityEngine;
 
 public class DynamicTexture : MonoBehaviour
 {
-    [SerializeField] private Texture2D highTexture;
-    [SerializeField] private Texture2D midTexture;
-    [SerializeField] private Texture2D lowTexture;
+    [SerializeField] private Sprite highTexture;
+    [SerializeField] private Sprite midTexture;
+    [SerializeField] private Sprite lowTexture;
     private SpriteRenderer spriteRenderer;
     private VisualUpdater visualUpdater;
 
     private void Awake()
     {
         if (TryGetComponent(out SpriteRenderer renderer))
-            spriteRenderer= renderer;
+            spriteRenderer = renderer;
         else
             spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         visualUpdater = FindAnyObjectByType<VisualUpdater>();
     }
     void Start()
     {
-        spriteRenderer.material.mainTexture = PickTexture();
+        spriteRenderer.sprite = PickTexture();
     }
 
-    private Texture2D PickTexture()
+    private Sprite PickTexture()
     {
         return visualUpdater.Settings switch
         {

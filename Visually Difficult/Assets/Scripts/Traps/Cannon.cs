@@ -4,12 +4,12 @@ public class Cannon : MonoBehaviour
 {
     [Header("Setup")]
     [SerializeField] Transform muzzle;
-    [SerializeField] Transform barrelPivot;
     [SerializeField] LayerMask aimMask;
+    private Animator animation;
 
     [Header("Rotation")]
-    [SerializeField] float defaultAngle;
     [SerializeField] Vector2 minMaxAngle = new (-180, 180);
+    private readonly float defaultAngle = 90;
 
     [Header("Projectile")]
     [SerializeField] Projectile projectile;
@@ -33,6 +33,7 @@ public class Cannon : MonoBehaviour
 
     void Start()
     {
+        animation = GetComponent<Animator>();
         line = GetComponent<LineRenderer>();
         SetTarget();
         StartCooldown();
@@ -49,7 +50,7 @@ public class Cannon : MonoBehaviour
             return;
         }
 
-        Vector2 direction = target.position - barrelPivot.position;
+        Vector2 direction = target.position - transform.position;
         var rayHit = Physics2D.Raycast(transform.position, direction.normalized, maxRange);
         bool hitPlayer = rayHit.transform != null && rayHit.transform.gameObject.CompareTag("Player");
         line.enabled = hitPlayer;
@@ -57,9 +58,9 @@ public class Cannon : MonoBehaviour
             return;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        barrelPivot.rotation = Quaternion.Euler(barrelPivot.eulerAngles.x, barrelPivot.eulerAngles.y, Mathf.Clamp(angle, minMaxAngle.x, minMaxAngle.y));
+        transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, Mathf.Clamp(angle, minMaxAngle.x, minMaxAngle.y) + defaultAngle);
 
-        line.SetPosition(0, muzzle.position);
+        line.SetPosition(0, transform.position);
         line.SetPosition(1, target.position);
         float reloadPercentage = 1 - Mathf.Clamp((timeToFire - Time.time) / (1f / fireRate), 0f, 1f);
         Color lineColour = Color.Lerp(justFiredColour, rearmedColour, reloadPercentage);
@@ -70,6 +71,7 @@ public class Cannon : MonoBehaviour
         {
             Projectile temp = Instantiate(projectile, muzzle.position, muzzle.rotation);
             temp.Initiate(hitMask, speed, maxRange);
+            animation.SetTrigger("Fire");
             StartCooldown();
         }
     }
@@ -82,7 +84,7 @@ public class Cannon : MonoBehaviour
     {
         if (target == null) return;
         Gizmos.color = Color.red;
-        Vector2 direction = target.position - barrelPivot.position;
+        Vector2 direction = target.position - transform.position;
         Gizmos.DrawRay(transform.position, direction.normalized * maxRange);
     }
 }
