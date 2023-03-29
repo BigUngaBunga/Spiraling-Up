@@ -18,7 +18,8 @@ public class PlayerParticles : MonoBehaviour
     [Header("Wall Jumping")]
     [SerializeField] GameObject wallJumpEffect;
     [SerializeField] float wallJumpEffectDuration;
-    [SerializeField] Transform wallJumpEffectOrigin;
+    [SerializeField] Transform wallJumpEffectOriginRight;
+    [SerializeField] Transform wallJumpEffectOriginLeft;
 
     [Header("Landing")]
     [SerializeField] GameObject landEffect;
@@ -26,14 +27,20 @@ public class PlayerParticles : MonoBehaviour
     [SerializeField] float landEffectDuration;
     [SerializeField] Transform landEffectOrigin;
 
-    Settings settings = Settings.Medium;
+    [Header("Death")]
+    [SerializeField] GameObject deathEffect;
+    [SerializeField] float deathDelay;
+    [SerializeField] Transform deathEffectOrigin;
+
     bool accelerated;
     bool isGrounded;
 
     float oldSpeed;
     float fallTimer;
 
-    private void Start()
+    Settings settings = Settings.Medium;
+
+    void Start()
     {
         settings = FindAnyObjectByType<VisualUpdater>().Settings;
     }
@@ -65,8 +72,9 @@ public class PlayerParticles : MonoBehaviour
 
     public void SetGrounded(bool value) => isGrounded = value;
     public void Jump() => PlayEffect(jumpEffect, jumpEffectOrigin, jumpEffectDuration);
-    public void WallJump() => StartCoroutine(PlayEffect(wallJumpEffect, wallJumpEffectOrigin, wallJumpEffectDuration, 0.032f, Settings.Medium));
+    public void WallJump(float directionX) => PlayEffect(wallJumpEffect, directionX > 0 ? wallJumpEffectOriginLeft : wallJumpEffectOriginRight, wallJumpEffectDuration, Settings.Medium);
     public void Land() => PlayEffect(fallTimer >= minFallTime ? landEffect : null, landEffectOrigin, landEffectDuration);
+    public void Die(System.Action runOnEnd) => StartCoroutine(PlayDeathEffect(runOnEnd));
 
     void PlayEffect(GameObject effect, Transform origin, float duration, Settings minimumLevel = Settings.High)
     {
@@ -80,5 +88,16 @@ public class PlayerParticles : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         PlayEffect(effect, origin, duration, minimumLevel);
+    }
+
+    IEnumerator PlayDeathEffect(System.Action runOnEnd)
+    {
+        if (deathEffect != null)
+        {
+            PlayEffect(deathEffect, deathEffectOrigin, deathDelay, Settings.Low);
+            yield return new WaitForSeconds(deathDelay);
+        }
+
+        runOnEnd?.Invoke();
     }
 }

@@ -9,6 +9,13 @@ public class Projectile : Deadly
 
     float distanceTraveled;
 
+    public void Initiate(LayerMask hitMask, float speed, float maxRange)
+    {
+        this.hitMask = hitMask;
+        this.speed = speed;
+        this.maxRange = maxRange;
+    }
+
     void Update()
     {
         float travelDistance = speed * Time.deltaTime;
@@ -29,12 +36,5 @@ public class Projectile : Deadly
         }
 
         transform.position += transform.right * travelDistance;
-    }
-
-    public void Initiate(LayerMask hitMask, float speed, float maxRange)
-    {
-        this.hitMask = hitMask;
-        this.speed = speed;
-        this.maxRange = maxRange;
     }
 }

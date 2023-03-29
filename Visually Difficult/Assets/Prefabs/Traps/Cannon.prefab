@@ -113,8 +113,8 @@ MonoBehaviour:
   fireRate: 0.5
   speed: 15
   maxRange: 21
-  fireEffect: {fileID: 0}
-  fireEffectDuration: 0
+  fireEffect: {fileID: 1855088094690513756, guid: de31a024ac9a5de40bd403a5badf7402, type: 3}
+  fireEffectDuration: 0.2
   justFiredColour: {r: 0.034843344, g: 0.28385258, b: 0.8207547, a: 1}
   rearmedColour: {r: 0.7830189, g: 0.41838437, b: 0.13665895, a: 1}
 --- !u!120 &5125323822124473618

@@ -76,8 +76,6 @@ public class InformationDisplay : MonoBehaviour
         {
             DisableSkip();
             endScreen.Deactivate();
-            if (pauseMenu != null)
-                pauseMenu.enabled = true;
             skippedEndEvent.Invoke();
         }
     }

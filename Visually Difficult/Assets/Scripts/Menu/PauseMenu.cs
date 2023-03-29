@@ -1,7 +1,5 @@
-using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 

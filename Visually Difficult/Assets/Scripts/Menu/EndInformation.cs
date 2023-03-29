@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,7 +8,7 @@ public class EndInformation : MonoBehaviour
 
     [SerializeField] private float goldTime, silverTime, bronzeTime;
     [SerializeField] private Image goldMedal, silverMedal, bronzeMedal;
-    [Serialize] private float inactiveAlpha = 0.33f;
+    [SerializeField] private float inactiveAlpha = 0.33f;
     [SerializeField] private TextMeshProUGUI levelName, timeText, attemptsText;
     [SerializeField] private TextMeshProUGUI goldText, silverText, bronzeText;
     private char timeEnd = 's';

@@ -11,11 +11,13 @@ public class GraphicalSettings : MonoBehaviour
     public void SetGraphicsPreset(int preset)
     {
         if (preset == currentPreset)
-            return; 
+            return;
+
         currentPreset = preset;
         settings.Clear();
         for (int i = 0; i < numberOfLevels; i++)
             settings.Add(Setting.Medium);
+
         switch (preset)
         {
             case 1:

@@ -1,4 +1,5 @@
 using UnityEngine;
+using Settings = GraphicalSettings.Setting;
 
 public class Cannon : MonoBehaviour
 {
@@ -31,8 +32,12 @@ public class Cannon : MonoBehaviour
     Transform target;
     float timeToFire;
 
+    Settings settings = Settings.Medium;
+
     void Start()
     {
+        settings = FindAnyObjectByType<VisualUpdater>().Settings;
+
         line = GetComponent<LineRenderer>();
         SetTarget();
         StartCooldown();
@@ -71,6 +76,9 @@ public class Cannon : MonoBehaviour
             Projectile temp = Instantiate(projectile, muzzle.position, muzzle.rotation);
             temp.Initiate(hitMask, speed, maxRange);
             StartCooldown();
+
+            if (fireEffect != null && settings == Settings.High)
+                Destroy(Instantiate(fireEffect, muzzle.position, muzzle.rotation), fireEffectDuration);
         }
     }
 

@@ -15,7 +15,6 @@ public class Exit : MonoBehaviour
     {
         if (!hasRun && collision.gameObject.CompareTag("Player"))
             ReachedEnd();
-            //SwitchToNextMap();
     }
 
     private void ReachedEnd()

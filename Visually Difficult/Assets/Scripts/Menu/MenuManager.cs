@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -21,13 +19,11 @@ public class MenuManager : MonoBehaviour
 
     public void StartGame()
     {
-
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         pauseMenu.SetActive(true);
 
         int tutorialIndex = 1;
-        DataCollector.StartLevel(tutorialIndex);
         SceneManager.LoadSceneAsync(tutorialIndex);
     }
 

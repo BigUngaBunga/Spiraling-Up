@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &545751730548021552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2115691043159570433}
+  m_Layer: 0
+  m_Name: Wall Jump Effect Origin Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2115691043159570433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545751730548021552}
+  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
+  m_LocalPosition: {x: 1.3, y: -2.15, z: -5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2672675540961163708}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
 --- !u!1 &1654670585040729115
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,6 +168,8 @@ Transform:
   - {fileID: 7195667238247614396}
   - {fileID: 5662211609449014250}
   - {fileID: 3423195350596278429}
+  - {fileID: 2115691043159570433}
+  - {fileID: 45443606259629549}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -343,11 +376,15 @@ MonoBehaviour:
   jumpEffectOrigin: {fileID: 7195667238247614396}
   wallJumpEffect: {fileID: 4480775650279076124, guid: 5a7786f84be879240afcb546d213b68d, type: 3}
   wallJumpEffectDuration: 0.4
-  wallJumpEffectOrigin: {fileID: 3423195350596278429}
+  wallJumpEffectOriginRight: {fileID: 2115691043159570433}
+  wallJumpEffectOriginLeft: {fileID: 45443606259629549}
   landEffect: {fileID: 4480775650279076124, guid: 7e60888bac08b9e4da53f6140e81fd3d, type: 3}
   minFallTime: 0.35
   landEffectDuration: 0.4
   landEffectOrigin: {fileID: 5662211609449014250}
+  deathEffect: {fileID: 1855088094690513756, guid: a1b051e277bd31543baa264316394ec1, type: 3}
+  deathDelay: 0.5
+  deathEffectOrigin: {fileID: 2672675540961163708}
 --- !u!50 &2672675540961163705
 Rigidbody2D:
   serializedVersion: 4
@@ -540,3 +577,34 @@ Transform:
   m_Father: {fileID: 2672675540961163708}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8910741393003556208
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 45443606259629549}
+  m_Layer: 0
+  m_Name: Wall Jump Effect Origin Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &45443606259629549
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8910741393003556208}
+  m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
+  m_LocalPosition: {x: -0.95, y: -2.15, z: -5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2672675540961163708}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}

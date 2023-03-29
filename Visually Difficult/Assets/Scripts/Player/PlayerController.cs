@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -88,11 +87,13 @@ public class PlayerController : MonoBehaviour
 
     public void Kill(string deathReason = "")
     {
-        //TODO vänta lite innan man laddar om för att kunna använda någon effekt
         Print(deathReason);
-        DataCollector.IncreasePlayerDeaths();
-        DataCollector.RestartAttemptTimer();
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+
+        enabled = false;
+        rigidbody.isKinematic = true;
+        rigidbody.velocity = Vector2.zero;
+        GetComponent<SpriteRenderer>().enabled = false;
+        particles.Die(DeathReset);
     }
 
     private void FixedUpdate()
@@ -129,6 +130,13 @@ public class PlayerController : MonoBehaviour
         isGrounded = false;
     }
 
+    void DeathReset()
+    {
+        DataCollector.IncreasePlayerDeaths();
+        DataCollector.RestartAttemptTimer();
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+    }
+
     #region Jumping
     private void Jump(InputAction.CallbackContext context)
     {
@@ -142,7 +150,7 @@ public class PlayerController : MonoBehaviour
     private void WallJump(Vector2 jumpDirection)
     {
         animator.WallJump();
-        particles.WallJump();
+        particles.WallJump(jumpDirection.x);
 
         float angle = wallJumpAngle * Mathf.Deg2Rad;
         Vector2 velocity = new Vector2(jumpDirection.x * Mathf.Sin(angle), Mathf.Cos(angle)) * wallJumpVelocity;
