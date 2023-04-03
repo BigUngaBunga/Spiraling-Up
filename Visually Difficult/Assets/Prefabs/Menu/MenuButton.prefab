@@ -258,19 +258,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2511543404381048360}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: StartGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2511543404381048363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,7 +278,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 2511543404381048362}
           m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
-          m_MethodName: ScaleUp
+          m_MethodName: OnEnter
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -306,7 +294,23 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 2511543404381048362}
           m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
-          m_MethodName: ScaleDown
+          m_MethodName: OnExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2511543404381048362}
+          m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
+          m_MethodName: OnClick
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -328,5 +332,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5660fe696fe6d414c89fb4ced9fcce9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickedEvent:
+    m_PersistentCalls:
+      m_Calls: []
   addedScale: {x: 0.1, y: 0.1, z: 0.1}
   lerpNumber: 10
+  clickButton: {fileID: 8300000, guid: aa7ca843e9b4b4a46a8a630a5be6a27d, type: 3}
+  selectButton: {fileID: 8300000, guid: 89ad7f11a50736b4b9ec48b48f24d2c6, type: 3}
