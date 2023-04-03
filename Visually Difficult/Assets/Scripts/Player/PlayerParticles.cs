@@ -74,7 +74,7 @@ public class PlayerParticles : MonoBehaviour
     public void Jump() => PlayEffect(jumpEffect, jumpEffectOrigin, jumpEffectDuration);
     public void WallJump(float directionX) => PlayEffect(wallJumpEffect, directionX > 0 ? wallJumpEffectOriginLeft : wallJumpEffectOriginRight, wallJumpEffectDuration, Settings.Medium);
     public void Land() => PlayEffect(fallTimer >= minFallTime ? landEffect : null, landEffectOrigin, landEffectDuration);
-    public void Die(System.Action runOnEnd) => StartCoroutine(PlayDeathEffect(runOnEnd));
+    public void Die() => PlayEffect(deathEffect, deathEffectOrigin, deathDelay, Settings.Low);
 
     void PlayEffect(GameObject effect, Transform origin, float duration, Settings minimumLevel = Settings.High)
     {
@@ -82,22 +82,5 @@ public class PlayerParticles : MonoBehaviour
             return;
 
         Destroy(Instantiate(effect, origin.position, origin.rotation), duration);
-    }
-
-    IEnumerator PlayEffect(GameObject effect, Transform origin, float duration, float delay, Settings minimumLevel = Settings.High)
-    {
-        yield return new WaitForSeconds(delay);
-        PlayEffect(effect, origin, duration, minimumLevel);
-    }
-
-    IEnumerator PlayDeathEffect(System.Action runOnEnd)
-    {
-        if (deathEffect != null)
-        {
-            PlayEffect(deathEffect, deathEffectOrigin, deathDelay, Settings.Low);
-            yield return new WaitForSeconds(deathDelay);
-        }
-
-        runOnEnd?.Invoke();
     }
 }

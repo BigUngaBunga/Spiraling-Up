@@ -356,6 +356,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minimumFlipVelocity: 0.04
+  wallJumpFlipStopDuration: 0.2
+  deathDuration: 0.4
 --- !u!114 &-1922336991613180267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,9 +400,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c537a843e95fff45ab2f261dc28ca4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highAnimation: {fileID: 9100000, guid: 29ed0804e545ec748897e3dd19a7af62, type: 2}
+  highAnimation: {fileID: 9100000, guid: f321f85c6fe11924e97ace8b6cfe1287, type: 2}
   midAnimation: {fileID: 9100000, guid: 48a6a4bf43219a44690e6404027a2f0a, type: 2}
-  lowAnimation: {fileID: 9100000, guid: 7bbb0bdd85df90743955f42b3a32829d, type: 2}
+  lowAnimation: {fileID: 9100000, guid: e4078ede3b3004442941bcb40d8db0bd, type: 2}
 --- !u!50 &2672675540961163705
 Rigidbody2D:
   serializedVersion: 4

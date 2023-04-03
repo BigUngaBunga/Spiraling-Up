@@ -1,30 +1,44 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
 {
     enum Direction { Idle, Left, Right }
 
-    [SerializeField] private float minimumFlipVelocity;
+    [SerializeField] float minimumFlipVelocity;
+    [SerializeField] float wallJumpFlipStopDuration;
+    [SerializeField] float deathDuration;
 
-    private Animator animator;
-    private Direction direction;
+    float flipEnableTime;
 
-    private void Awake()
+    Animator animator;
+    Direction direction;
+
+    void Awake()
     {
         animator = GetComponent<Animator>();
     }
 
-    public void UpdateAnimation(Vector2 direction)
-    {
-        SetDirection(direction.x);
-    }
+    public void UpdateAnimation(Vector2 direction) => SetDirection(direction.x);
 
     public void Jump() => animator.SetTrigger("Jump");
-    public void WallJump() => animator.SetTrigger("WallJump");
     public void SetGrounded(bool value) => animator.SetBool("Grounded", value);
-
-    private void SetDirection(float x)
+    public void Die(System.Action runOnEnd) => StartCoroutine(PlayDeathAnimation(runOnEnd));
+    
+    public void WallJump(float jumpDirection)
     {
+        flipEnableTime = 0;
+        SetDirection(-jumpDirection);
+
+        animator.SetTrigger("WallJump");
+        flipEnableTime = Time.time + wallJumpFlipStopDuration;
+    }
+
+    void SetDirection(float x)
+    {
+        if (Time.time < flipEnableTime)
+            return;
+
         if (x > minimumFlipVelocity)
             direction = Direction.Right;
         else if (x < -minimumFlipVelocity)
@@ -42,4 +56,12 @@ public class PlayerAnimator : MonoBehaviour
         }
     }
 
+    IEnumerator PlayDeathAnimation(System.Action runOnEnd)
+    {
+        animator.SetTrigger("Die");
+
+        yield return new WaitForSeconds(deathDuration);
+
+        runOnEnd?.Invoke();
+    }
 }

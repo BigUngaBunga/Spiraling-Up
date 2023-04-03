@@ -90,10 +90,8 @@ public class PlayerController : MonoBehaviour
         Print(deathReason);
 
         enabled = false;
-        rigidbody.isKinematic = true;
-        rigidbody.velocity = Vector2.zero;
-        GetComponent<SpriteRenderer>().enabled = false;
-        particles.Die(DeathReset);
+        animator.Die(DeathReset);
+        particles.Die();
     }
 
     private void FixedUpdate()
@@ -130,7 +128,7 @@ public class PlayerController : MonoBehaviour
         isGrounded = false;
     }
 
-    void DeathReset()
+    private void DeathReset()
     {
         DataCollector.IncreasePlayerDeaths();
         DataCollector.RestartAttemptTimer();
@@ -149,7 +147,7 @@ public class PlayerController : MonoBehaviour
 
     private void WallJump(Vector2 jumpDirection)
     {
-        animator.WallJump();
+        animator.WallJump(jumpDirection.x);
         particles.WallJump(jumpDirection.x);
 
         float angle = wallJumpAngle * Mathf.Deg2Rad;
