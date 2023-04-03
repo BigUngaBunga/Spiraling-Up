@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 2558933544155387674}
   - component: {fileID: -1922336991613180267}
   - component: {fileID: 3353741820807431877}
+  - component: {fileID: 1738357274444039639}
   - component: {fileID: 2672675540961163705}
   - component: {fileID: 3280900724099407210}
   m_Layer: 0
@@ -401,6 +402,24 @@ MonoBehaviour:
   highAnimation: {fileID: 9100000, guid: 29ed0804e545ec748897e3dd19a7af62, type: 2}
   midAnimation: {fileID: 9100000, guid: 48a6a4bf43219a44690e6404027a2f0a, type: 2}
   lowAnimation: {fileID: 9100000, guid: 7bbb0bdd85df90743955f42b3a32829d, type: 2}
+--- !u!114 &1738357274444039639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2672675540961163704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0bf0a209adae64f8f62ccbb89e1f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jump: {fileID: 8300000, guid: cb7b88cc79a0559448b0e0893dd00544, type: 3}
+  land: {fileID: 8300000, guid: d3ebf56c95091cc4db3d7b1ee63195a9, type: 3}
+  die: {fileID: 0}
+  playJumpSound: 1
+  playLandSound: 0
+  playDeatSound: 0
 --- !u!50 &2672675540961163705
 Rigidbody2D:
   serializedVersion: 4

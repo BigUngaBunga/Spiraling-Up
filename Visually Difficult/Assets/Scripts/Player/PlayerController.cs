@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
     private new Rigidbody2D rigidbody;
     private PlayerAnimator animator;
     private PlayerParticles particles;
+    private PlayerAudio audio;
 
     #region Input
     private InputAction moveAction;
@@ -78,6 +79,7 @@ public class PlayerController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<PlayerAnimator>();
         particles = GetComponent<PlayerParticles>();
+        audio = GetComponent<PlayerAudio>();
 
         PlayerInput input = GetComponent<PlayerInput>();
 
@@ -94,6 +96,7 @@ public class PlayerController : MonoBehaviour
         rigidbody.velocity = Vector2.zero;
         GetComponent<SpriteRenderer>().enabled = false;
         particles.Die(DeathReset);
+        audio.Die();
     }
 
     private void FixedUpdate()
@@ -119,6 +122,7 @@ public class PlayerController : MonoBehaviour
             if (Vector2.Angle(collision.GetContact(i).normal, Vector2.up) < 46)
             {
                 particles.Land();
+                audio.Land();
                 isGrounded = true;
                 return;
             }
@@ -151,6 +155,7 @@ public class PlayerController : MonoBehaviour
     {
         animator.WallJump();
         particles.WallJump(jumpDirection.x);
+        audio.WallJump();
 
         float angle = wallJumpAngle * Mathf.Deg2Rad;
         Vector2 velocity = new Vector2(jumpDirection.x * Mathf.Sin(angle), Mathf.Cos(angle)) * wallJumpVelocity;
@@ -168,6 +173,7 @@ public class PlayerController : MonoBehaviour
     {
         animator.Jump();
         particles.Jump();
+        audio.Jump();
 
         coyoteTimer = coyoteTime;
         jumpTimer = -1;
