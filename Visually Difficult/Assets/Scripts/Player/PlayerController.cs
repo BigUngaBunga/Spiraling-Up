@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
     [Header("Setup")]
@@ -50,6 +51,7 @@ public class PlayerController : MonoBehaviour
     private new Rigidbody2D rigidbody;
     private PlayerAnimator animator;
     private PlayerParticles particles;
+    private new PlayerAudio audio;
 
     #region Input
     private InputAction moveAction;
@@ -80,11 +82,18 @@ public class PlayerController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<PlayerAnimator>();
         particles = GetComponent<PlayerParticles>();
+        audio = GetComponent<PlayerAudio>();
 
         PlayerInput input = GetComponent<PlayerInput>();
 
         moveAction = input.actions["Move"];
         jumpAction = input.actions["Jump"];
+    }
+
+    private void Start()
+    {
+        if (TryGetComponent(out DynamicAnimation dynAnim))
+            dynAnim.Initialise();
     }
 
     public void Kill(string deathReason = "")
@@ -97,14 +106,9 @@ public class PlayerController : MonoBehaviour
         enabled = false;
         animator.Die(DeathReset);
         particles.Die();
+        audio.Die();
 
         dead = true;
-    }
-
-    private void Update()
-    {
-        if (InputSystem.GetDevice<Keyboard>().f5Key.wasPressedThisFrame)
-            DataCollector.SaveData();
     }
 
     private void FixedUpdate()
@@ -130,6 +134,7 @@ public class PlayerController : MonoBehaviour
             if (Vector2.Angle(collision.GetContact(i).normal, Vector2.up) < 46)
             {
                 particles.Land();
+                audio.Land();
                 isGrounded = true;
                 return;
             }
@@ -162,6 +167,7 @@ public class PlayerController : MonoBehaviour
     {
         animator.WallJump(jumpDirection.x);
         particles.WallJump(jumpDirection.x);
+        audio.WallJump();
 
         float angle = wallJumpAngle * Mathf.Deg2Rad;
         Vector2 velocity = new Vector2(jumpDirection.x * Mathf.Sin(angle), Mathf.Cos(angle)) * wallJumpVelocity;
@@ -179,6 +185,7 @@ public class PlayerController : MonoBehaviour
     {
         animator.Jump();
         particles.Jump();
+        audio.Jump();
 
         coyoteTimer = coyoteTime;
         jumpTimer = -1;

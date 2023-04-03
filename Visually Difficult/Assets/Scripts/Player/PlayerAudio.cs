@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAudio : MonoBehaviour
@@ -21,16 +19,19 @@ public class PlayerAudio : MonoBehaviour
 
     public void Jump()
     {
-        if (playJumpSound) audioPlayer.PlaySoundEffect(jump);
+        if (playJumpSound && audioPlayer != null)
+            audioPlayer.PlaySoundEffect(jump);
     }
     //Here in case we want to add a unique sound effect for wall jumping
     public void WallJump() => Jump();
     public void Land()
     {
-        if (playLandSound) audioPlayer.PlaySoundEffect(land);
+        if (playLandSound && audioPlayer != null)
+            audioPlayer.PlaySoundEffect(land);
     }
     public void Die()
     {
-        if (playDeatSound) audioPlayer.PlaySoundEffect(die);
+        if (playDeatSound && audioPlayer != null)
+            audioPlayer.PlaySoundEffect(die);
     }
 }

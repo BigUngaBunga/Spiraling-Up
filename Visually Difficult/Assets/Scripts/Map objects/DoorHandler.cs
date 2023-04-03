@@ -1,33 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class DoorHandler : MonoBehaviour
+public abstract class DoorHandler : MonoBehaviour
 {
-    enum DoorType { Entrance, Exit}
-    [SerializeField] private DoorType type;
-    [SerializeField] private GameObject playerPrefab;
+    protected enum Type { Entrance = 1, Exit = 2}
 
-    private void Awake()
-    {
-        if (type == DoorType.Entrance)
-            Instantiate(playerPrefab, transform.position, Quaternion.identity);
-            
-    }
+    [SerializeField] protected Type type = Type.Entrance;
+    
+    protected Animator anim;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void Start()
     {
-        if (type == DoorType.Exit && collision.gameObject.CompareTag("Player"))
-            SwitchToNextMap();
-    }
+        if (TryGetComponent(out DynamicAnimation dynAnim))
+            dynAnim.Initialise();
 
-    private void SwitchToNextMap()
-    {
-        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        if (SceneManager.sceneCountInBuildSettings > sceneIndex + 1)
-            SceneManager.LoadSceneAsync(sceneIndex + 1);
-        else
-            SceneManager.LoadSceneAsync(0);
+        anim.SetInteger("Type", (int)type);
     }
 }
