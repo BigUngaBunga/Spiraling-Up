@@ -31,16 +31,18 @@ public class PlayerController : MonoBehaviour
     [Header("Ground check")]
     [SerializeField] private Vector2 groundCheckOffset;
     [SerializeField] private Vector2 groundCheckSize;
-    private Vector2 GroundCheckPosition => (Vector2)transform.position + groundCheckOffset * transform.localScale;
-    private Vector2 GroundCheckSize => groundCheckSize * transform.localScale;
 
     [Header("Debug")]
     [SerializeField] private bool drawDebug;
     [SerializeField] private bool printDebug;
 
+    private Vector2 GroundCheckPosition => (Vector2)transform.position + groundCheckOffset * transform.localScale;
+    private Vector2 GroundCheckSize => groundCheckSize * transform.localScale;
+
     private bool isGrounded;
     private bool justJumped;
     private bool inputDisabled;
+    private bool dead;
 
     private float jumpTimer;
     private float coyoteTimer;
@@ -87,11 +89,22 @@ public class PlayerController : MonoBehaviour
 
     public void Kill(string deathReason = "")
     {
+        if (dead)
+            return;
+
         Print(deathReason);
 
         enabled = false;
         animator.Die(DeathReset);
         particles.Die();
+
+        dead = true;
+    }
+
+    private void Update()
+    {
+        if (InputSystem.GetDevice<Keyboard>().f5Key.wasPressedThisFrame)
+            DataCollector.SaveData();
     }
 
     private void FixedUpdate()

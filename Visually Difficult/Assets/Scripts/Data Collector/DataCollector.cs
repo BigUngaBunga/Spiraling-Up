@@ -5,18 +5,20 @@ using UnityEngine;
 
 public static class DataCollector
 {
-    private static int deathCount;
-    private static int currentLevel;
-    private static float sceneStartTime;
-    private static float attemptStartTime;
+    static string SavePath { get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "VD.data"); }}
 
-    private static readonly StringBuilder dataString = new ();
+    static int deathCount;
+    static int currentLevel;
+    static float sceneStartTime;
+    static float attemptStartTime;
+
+    static readonly StringBuilder dataString = new ();
 
     public static int DeathCount => deathCount;
     public static float AttemptTime => RoundToDecimal(Time.time - attemptStartTime, 2);
     public static void IncreasePlayerDeaths() => deathCount++;
     public static void RestartAttemptTimer() => attemptStartTime = Time.time;
-    
+
     public static void StartLevel(int level)
     {
         if (level == currentLevel)
@@ -27,13 +29,18 @@ public static class DataCollector
         attemptStartTime = sceneStartTime = Time.time;
     }
 
-
     public static void EndLevel() => dataString.Append($"{currentLevel}: Deaths={deathCount};Time={RoundToDecimal(Time.time - sceneStartTime)}{Environment.NewLine}");
 
     public static void SaveData()
     {
-        //TODO: Change so as to send information instead of saving to file
-        File.WriteAllText($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{Path.DirectorySeparatorChar}VD.data", dataString.ToString());
+        File.WriteAllText(SavePath, dataString.ToString());
+        EmailHandler.SendEmail(SavePath, "Data collection");
+    }
+
+    public static void DeleteSaveFile()
+    {
+        if (Directory.Exists(SavePath))
+            Directory.Delete(SavePath);
     }
 
     private static float RoundToDecimal(float time, int decimals = 1)

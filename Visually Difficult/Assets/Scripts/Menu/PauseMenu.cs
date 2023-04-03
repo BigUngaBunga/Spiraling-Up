@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject menu;
+
     private bool isPaused = false;
     private InputAction pauseAction;
 
@@ -39,5 +40,4 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void ExitGame() => Application.Quit();
-
 }
