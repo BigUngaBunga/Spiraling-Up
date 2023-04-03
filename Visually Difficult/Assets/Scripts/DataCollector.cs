@@ -36,6 +36,13 @@ public static class DataCollector
         File.WriteAllText($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{Path.DirectorySeparatorChar}VD.data", dataString.ToString());
     }
 
+    public static void Clear()
+    {
+        dataString.Clear();
+        deathCount= 0;
+        attemptStartTime = sceneStartTime = Time.time;
+    }
+
     private static float RoundToDecimal(float time, int decimals = 1)
     {
         return Mathf.Round(time * Mathf.Pow(10, decimals)) * Mathf.Pow(10, -decimals);
