@@ -2,16 +2,25 @@ using UnityEngine;
 
 public class AudioPlayer : MonoBehaviour
 {
-    public float SoundEffectVolume { get; private set; }
-    public float MusicVolume { get; private set; }
+
+    [SerializeField]private float soundVolume, musicVolume;
+    public float SoundEffectVolume { 
+        get { return soundVolume; }
+
+        set { soundVolume = Mathf.Clamp(value, 0, 1); }
+    }
+    public float MusicVolume
+    {
+        get { return musicVolume; }
+
+        set { musicVolume = Mathf.Clamp(value, 0, 1); }
+    }
 
     private AudioSource audioSource;
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        SoundEffectVolume= 1f;
-        MusicVolume= 1f;
     }
 
     public void PlaySoundEffect(AudioClip clip)
