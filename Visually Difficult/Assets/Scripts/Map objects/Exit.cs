@@ -67,11 +67,24 @@ public class Exit : DoorHandler
             rb.isKinematic = true;
             rb.velocity = Vector2.zero;
         }
-
-        player.transform.position = transform.position + (Vector3)playerEndOffset;
-
+        yield return StartCoroutine(MoveToEnd(player));
         yield return new WaitForSeconds(endWaitTime);
 
         ReachedEnd();
+    }
+
+    private IEnumerator MoveToEnd(GameObject gameObject)
+    {
+        float lerpSpeed = 0.1f;
+        float lerp = 0;
+        Vector3 initalPosition = gameObject.transform.position;
+        Vector3 targetPosition = transform.position + (Vector3)playerEndOffset;
+        var wait = new WaitForSeconds(Time.fixedDeltaTime);
+        do
+        {
+            lerp += lerpSpeed;
+            gameObject.transform.position = Vector3.Lerp(initalPosition, targetPosition, lerp);
+            yield return wait;
+        } while (lerp < 1);
     }
 }

@@ -6,6 +6,7 @@ public class FollowPlayer : MonoBehaviour
     [Range(1f, 10f)]
     [SerializeField] private float interpolationSpeed;
     [SerializeField] private Vector3 offset;
+    private ParallaxScroller parallaxScroller;
     private Vector3 TargetPosition => target.transform.position + offset;
 
     private void Start()
@@ -13,10 +14,12 @@ public class FollowPlayer : MonoBehaviour
         if (target == null)
             target = GameObject.Find("Player(Clone)");
         transform.position = TargetPosition;
+        parallaxScroller = GetComponent<ParallaxScroller>();
     }
 
     private void FixedUpdate()
     {
         transform.position = Vector3.Lerp(transform.position, TargetPosition, interpolationSpeed * Time.fixedDeltaTime);
+        parallaxScroller.MoveElementsTo(TargetPosition);
     }
 }

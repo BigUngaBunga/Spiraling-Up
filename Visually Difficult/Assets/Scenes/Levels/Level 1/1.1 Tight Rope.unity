@@ -9923,7 +9923,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2708404936047262199, guid: 435313615a69f4c49a092807ff0af7d4, type: 3}
       propertyPath: goldTime
-      value: 11.5
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2708404936047262199, guid: 435313615a69f4c49a092807ff0af7d4, type: 3}
       propertyPath: bronzeTime
@@ -9931,7 +9931,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2708404936047262199, guid: 435313615a69f4c49a092807ff0af7d4, type: 3}
       propertyPath: silverTime
-      value: 13
+      value: 13.5
       objectReference: {fileID: 0}
     - target: {fileID: 3374289506909287534, guid: 435313615a69f4c49a092807ff0af7d4, type: 3}
       propertyPath: m_Name
