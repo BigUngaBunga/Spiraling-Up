@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class GraphicalSettings : MonoBehaviour
@@ -6,14 +7,14 @@ public class GraphicalSettings : MonoBehaviour
     public enum Setting { High, Medium , Low }
     [SerializeField] private List<Setting> settings = new();
     [SerializeField] private int numberOfLevels = 4;
-    private int currentPreset = -1;
+    public int CurrentPreset { get; private set; } = -1;
 
     public void SetGraphicsPreset(int preset)
     {
-        if (preset == currentPreset)
+        if (preset == CurrentPreset)
             return;
 
-        currentPreset = preset;
+        CurrentPreset = preset;
         settings.Clear();
         for (int i = 0; i < numberOfLevels; i++)
             settings.Add(Setting.Medium);
@@ -32,4 +33,16 @@ public class GraphicalSettings : MonoBehaviour
     }
 
     public Setting GetLevelSetting(int level) => settings[level];
+
+    public override string ToString()
+    {
+        StringBuilder stringBuilder= new StringBuilder();
+        stringBuilder.Append($"Current preset: {CurrentPreset}. Settings: ");
+        foreach (var setting in settings)
+        {
+            stringBuilder.Append(setting.ToString());
+            stringBuilder.Append(", ");
+        }
+        return stringBuilder.ToString();
+    }
 }

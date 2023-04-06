@@ -29,6 +29,8 @@ public static class DataCollector
         attemptStartTime = sceneStartTime = Time.time;
     }
 
+    public static void StartSession(string presetInformation) => dataString.AppendLine(presetInformation);
+
     public static void EndLevel() => dataString.Append($"{currentLevel}: Deaths={deathCount};Time={RoundToDecimal(Time.time - sceneStartTime)}{Environment.NewLine}");
 
     public static void SaveData()

@@ -7,12 +7,20 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private Scrollbar presetToggle;
     private GraphicalSettings settings;
+    private readonly int presets = 3;
+
+    private void Awake()
+    {
+        CreateGraphicalSettings();        
+    }
+
     private void Start()
     {
         Cursor.visible= true;
         Cursor.lockState = CursorLockMode.Confined;
         pauseMenu.SetActive(false);
-        CreateGraphicalSettings();
+        presetToggle.value = (float)Random.Range(0, 3) / (presets - 1);
+        Debug.Log(settings.ToString());
     }
 
     public void ExitGame() => Application.Quit();
@@ -24,7 +32,9 @@ public class MenuManager : MonoBehaviour
         pauseMenu.SetActive(true);
 
         int tutorialIndex = 1;
+        Debug.Log(settings.ToString());
         DataCollector.Clear();
+        DataCollector.StartSession(settings.ToString());
         DataCollector.StartLevel(tutorialIndex);
         SceneManager.LoadSceneAsync(tutorialIndex);
     }
@@ -33,12 +43,11 @@ public class MenuManager : MonoBehaviour
     {
         GameObject gameObject = new GameObject("Settings", typeof(DontDestroy));
         settings = gameObject.AddComponent<GraphicalSettings>();
-        settings.SetGraphicsPreset(Random.Range(0, 3));
+        settings.SetGraphicsPreset(0);
     }
 
     public void UpdateGraphicalPreset()
     {
-        int presets = 3;
         settings.SetGraphicsPreset(Mathf.Min((int)(presetToggle.value * presets), presets - 1));
     }
 }
