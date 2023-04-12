@@ -7,6 +7,8 @@ public class ParallaxElement : MonoBehaviour
     [SerializeField] private Vector3 moveScale;
     [SerializeField] private Vector2 bounds;
     [SerializeField] protected Vector3 initialPosition;
+    [SerializeField] private bool onlyMoveInX = false;
+    [SerializeField] private bool overrideBounds = false;
     private Vector3 Position => transform.position;
 
     protected Vector3 moveX, moveY;
@@ -14,7 +16,8 @@ public class ParallaxElement : MonoBehaviour
     protected virtual void Start()
     {
         initialPosition = transform.position;
-        bounds = GetComponent<SpriteRenderer>().bounds.size;
+        if (!overrideBounds)
+            bounds = GetComponent<SpriteRenderer>().bounds.size;
         moveX = new Vector3(bounds.x * 2 - 1, 0);
         moveY = new Vector3(0, bounds.y * 2 - 1);
 
@@ -23,7 +26,10 @@ public class ParallaxElement : MonoBehaviour
 
     public void Move(Vector3 distance)
     {
-        gameObject.transform.position = initialPosition + new Vector3(distance.x * moveScale.x, distance.y * moveScale.y);
+        if (!onlyMoveInX)
+            transform.position = initialPosition + new Vector3(distance.x * moveScale.x, distance.y * moveScale.y);
+        else
+            transform.position = new Vector3(initialPosition.x + distance.x * moveScale.x, transform.position.y);
         if (Position.x + bounds.x < distance.x)
             initialPosition += moveX;
         else if (Position.x - bounds.x > distance.x)

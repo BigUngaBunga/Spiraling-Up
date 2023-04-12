@@ -108,11 +108,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8610175948655775899}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf15416de8b50914781f4400e46f843f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highTexture: {fileID: 21300000, guid: e705ab9f02ced3e489561808a23ff614, type: 3}
-  midTexture: {fileID: 21300000, guid: bc453eccb3d6e36469144292c3447547, type: 3}
+  highTexture: {fileID: 21300000, guid: 4a72bbbf313d09f4e90cf7058ca2e1f1, type: 3}
+  midTexture: {fileID: 21300000, guid: 80d326ddc4ba839468d84494763f414f, type: 3}
   lowTexture: {fileID: 21300000, guid: 3640f49e0a793214d962868554b6e11b, type: 3}

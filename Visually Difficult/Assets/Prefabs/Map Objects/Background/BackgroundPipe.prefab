@@ -103,7 +103,8 @@ MonoBehaviour:
   moveScale: {x: 0.25, y: 0.1, z: 0}
   bounds: {x: 0, y: 0}
   initialPosition: {x: 0, y: 0, z: 0}
-  connectedElement: {fileID: 0}
+  nextElement: {fileID: 0}
+  previousElement: {fileID: 0}
   connectionStart: {fileID: 1223368348353809285}
   connectionEnd: {fileID: 7741852531474792271}
 --- !u!114 &3861547458559981822
@@ -113,14 +114,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310974683685781454}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf15416de8b50914781f4400e46f843f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highTexture: {fileID: 21300000, guid: e705ab9f02ced3e489561808a23ff614, type: 3}
-  midTexture: {fileID: 21300000, guid: bc453eccb3d6e36469144292c3447547, type: 3}
-  lowTexture: {fileID: 21300000, guid: 3640f49e0a793214d962868554b6e11b, type: 3}
+  highTexture: {fileID: 21300000, guid: 74f85e0d268d3244292df8cad21a196c, type: 3}
+  midTexture: {fileID: 0}
+  lowTexture: {fileID: 0}
 --- !u!1 &1946206640801344545
 GameObject:
   m_ObjectHideFlags: 0
