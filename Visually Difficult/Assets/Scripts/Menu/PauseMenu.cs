@@ -39,5 +39,12 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadSceneAsync(0);
     }
 
+    public void Restart()
+    {
+        Debug.Log("Restarting");
+        TogglePauseMenu();
+        FindAnyObjectByType<PlayerController>().Kill("Restarting");
+    }
+
     public void ExitGame() => Application.Quit();
 }

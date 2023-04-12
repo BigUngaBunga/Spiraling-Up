@@ -30,6 +30,8 @@ public class GraphicalSettings : MonoBehaviour
                 settings[3] = Setting.Low;
                 break;
         }
+
+        Debug.Log(ToString());
     }
 
     public Setting GetLevelSetting(int level) => settings[level];

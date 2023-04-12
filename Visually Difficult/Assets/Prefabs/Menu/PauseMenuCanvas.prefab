@@ -216,7 +216,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &6832746594462481749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -594,15 +594,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2511543404264293095, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
       propertyPath: m_text
-      value: Exit
+      value: Restart
       objectReference: {fileID: 0}
     - target: {fileID: 2511543404264293095, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
       propertyPath: m_margin.x
       value: 120.536354
       objectReference: {fileID: 0}
+    - target: {fileID: 2511543404264293095, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
+      propertyPath: m_margin.z
+      value: 12.368805
+      objectReference: {fileID: 0}
     - target: {fileID: 2511543404381048357, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
       propertyPath: m_Name
-      value: Exit
+      value: Restart
       objectReference: {fileID: 0}
     - target: {fileID: 2511543404381048358, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
       propertyPath: m_Pivot.x
@@ -689,16 +693,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2511543404381048359, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2511543404381048359, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2511543404381048359, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1853517416080800246}
     - target: {fileID: 2511543404381048359, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2511543404381048359, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ExitGame
+      value: Restart
       objectReference: {fileID: 0}
     - target: {fileID: 2511543404381048359, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PauseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2511543404381048359, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2511543404381048360, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
       propertyPath: m_Color.b

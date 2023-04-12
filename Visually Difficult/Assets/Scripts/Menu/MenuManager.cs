@@ -19,8 +19,7 @@ public class MenuManager : MonoBehaviour
         Cursor.visible= true;
         Cursor.lockState = CursorLockMode.Confined;
         pauseMenu.SetActive(false);
-        presetToggle.value = (float)Random.Range(0, 3) / (presets - 1);
-        Debug.Log(settings.ToString());
+        presetToggle.value = (float)Random.Range(0, 3) / (presets - 1); 
     }
 
     public void ExitGame() => Application.Quit();

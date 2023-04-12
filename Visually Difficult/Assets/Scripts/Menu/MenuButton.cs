@@ -35,10 +35,15 @@ public class MenuButton : MonoBehaviour
         isSelected = false;
         StartLerp();
     }
+    public void OnPointerDown()
+    {
+        clickedEvent.Invoke();
+    }
+
     public void OnClick()
     {
         audioPlayer.PlaySoundEffect(clickButton);
-        clickedEvent.Invoke();
+        
     }
 
     private void StartLerp()
