@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ParallaxScroller : MonoBehaviour
 {
-    [SerializeField] private List<ParallaxElement> elements = new List<ParallaxElement>();
+    [SerializeField] private List<ParallaxElement> elements = new ();
 
     public void MoveElementsTo(Vector3 target)
     {

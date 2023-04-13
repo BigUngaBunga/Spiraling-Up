@@ -1,13 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ConnectedParallaxElement : ParallaxElement
 {
-
     [SerializeField] private ConnectedParallaxElement nextElement, previousElement;
     [SerializeField] private Transform connectionStart, connectionEnd;
-
 
     private ConnectedParallaxElement GetFirstElement() {
         if (previousElement == null)

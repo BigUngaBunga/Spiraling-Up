@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class EndInformation : MonoBehaviour
 {
+    private const char timeEnd = 's';
 
     [SerializeField] private float goldTime, silverTime, bronzeTime;
     [SerializeField] private Image goldMedal, silverMedal, bronzeMedal;
     [SerializeField] private float inactiveAlpha = 0.33f;
     [SerializeField] private TextMeshProUGUI levelName, timeText, attemptsText;
     [SerializeField] private TextMeshProUGUI goldText, silverText, bronzeText;
-    private char timeEnd = 's';
+
     private void Awake()
     {
         levelName.text = SceneManager.GetActiveScene().name;
@@ -26,6 +27,7 @@ public class EndInformation : MonoBehaviour
         gameObject.SetActive(true);
         attemptsText.text = $"Attempts: {DataCollector.DeathCount + 1}";
         timeText.text = $"Time: {DataCollector.AttemptTime}{timeEnd}";
+
         GotMedal(goldMedal, goldTime);
         GotMedal(silverMedal, silverTime);
         GotMedal(bronzeMedal, bronzeTime);

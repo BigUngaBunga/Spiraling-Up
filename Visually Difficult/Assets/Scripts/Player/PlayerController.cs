@@ -165,7 +165,7 @@ public class PlayerController : MonoBehaviour
 
     private void WallJump(Vector2 jumpDirection)
     {
-        animator.WallJump(jumpDirection.x);
+        animator.WallJump();
         particles.WallJump(jumpDirection.x);
         audio.WallJump();
 

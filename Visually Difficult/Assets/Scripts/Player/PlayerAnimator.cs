@@ -6,10 +6,7 @@ public class PlayerAnimator : MonoBehaviour
     enum Direction { Idle, Left, Right }
 
     [SerializeField] float minimumFlipVelocity;
-    [SerializeField] float wallJumpFlipStopDuration;
     [SerializeField] float deathDuration;
-
-    float flipEnableTime;
 
     Animator animator;
     Direction direction;
@@ -25,20 +22,10 @@ public class PlayerAnimator : MonoBehaviour
     public void SetGrounded(bool value) => animator.SetBool("Grounded", value);
     public void Die(System.Action runOnEnd) => StartCoroutine(PlayDeathAnimation(runOnEnd));
     
-    public void WallJump(float jumpDirection)
-    {
-        flipEnableTime = 0;
-        SetDirection(-jumpDirection);
-
-        animator.SetTrigger("WallJump");
-        flipEnableTime = Time.time + wallJumpFlipStopDuration;
-    }
+    public void WallJump() => animator.SetTrigger("WallJump");
 
     void SetDirection(float x)
     {
-        if (Time.time < flipEnableTime)
-            return;
-
         if (x > minimumFlipVelocity)
             direction = Direction.Right;
         else if (x < -minimumFlipVelocity)
