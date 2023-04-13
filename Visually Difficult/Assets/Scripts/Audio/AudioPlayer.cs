@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class AudioPlayer : MonoBehaviour
 {
-
     [SerializeField]private float soundVolume, musicVolume;
+
     public float SoundEffectVolume { 
         get { return soundVolume; }
 
