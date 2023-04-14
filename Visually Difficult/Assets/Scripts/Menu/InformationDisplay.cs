@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class InformationDisplay : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class InformationDisplay : MonoBehaviour
     private StartInformation startScreen;
     private EndInformation endScreen;
     private RunInformation runInfo;
+
+    private bool displayStart;
 
     public UnityEvent SkippedEndEvent => skippedEndEvent;
     private readonly UnityEvent skippedEndEvent = new();
@@ -41,19 +44,23 @@ public class InformationDisplay : MonoBehaviour
         startScreen.gameObject.SetActive(false);
         endScreen.gameObject.SetActive(false);
         runInfo.gameObject.SetActive(false);
+        displayStart = !(SceneManager.GetActiveScene().buildIndex == 1 && DataCollector.DeathCount == 0);
         DisableSkip();
     }
 
     //Delayed in the Script Execution Order
     private void Start()
     {
-        EnableSkip();
-        startScreen.Activate();
-
         playerController = FindObjectOfType<PlayerController>();
         pauseMenu = FindObjectOfType<PauseMenu>();
+        if (displayStart)
+        {
+            EnableSkip();
+            startScreen.Activate();
+            playerController.enabled = false;
+        }
 
-        playerController.enabled = false;
+
         if (pauseMenu != null)
             pauseMenu.enabled = false;
         else
