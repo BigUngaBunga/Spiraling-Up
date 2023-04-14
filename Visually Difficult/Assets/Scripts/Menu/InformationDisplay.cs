@@ -59,6 +59,12 @@ public class InformationDisplay : MonoBehaviour
             startScreen.Activate();
             playerController.enabled = false;
         }
+        else
+        {
+            runInfo.Activate();
+            if (pauseMenu != null)
+                pauseMenu.enabled = true;
+        }
 
 
         if (pauseMenu != null)
