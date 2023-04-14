@@ -33,7 +33,6 @@ public class Exit : DoorHandler
 
     private void ReachedEnd()
     {
-        DataCollector.EndLevel();
         informationDisplay.SkippedEndEvent.AddListener(SwitchToNextMap);
         informationDisplay.ActivateEnd();
     }
@@ -59,6 +58,7 @@ public class Exit : DoorHandler
     IEnumerator EndLevel(GameObject player)
     {
         anim.SetTrigger("Open");
+        DataCollector.EndLevel();
 
         if (player.TryGetComponent(out PlayerController control))
         {

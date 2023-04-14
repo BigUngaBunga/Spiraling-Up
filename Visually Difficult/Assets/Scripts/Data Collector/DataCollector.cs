@@ -12,12 +12,18 @@ public static class DataCollector
     static float sceneStartTime;
     static float attemptStartTime;
 
+    static float attemptFinishTime;
+
     static readonly StringBuilder dataString = new ();
 
     public static int DeathCount => deathCount;
-    public static float AttemptTime => RoundToDecimal(Time.time - attemptStartTime, 2);
+    public static float AttemptTime => RoundToDecimal((attemptFinishTime != 0 ? attemptFinishTime : Time.time) - attemptStartTime, 2);
     public static void IncreasePlayerDeaths() => deathCount++;
-    public static void RestartAttemptTimer() => attemptStartTime = Time.time;
+    public static void RestartAttemptTimer()
+    {
+        attemptStartTime = Time.time;
+        attemptFinishTime = 0;
+    }
 
     public static void StartLevel(int level)
     {
@@ -26,12 +32,17 @@ public static class DataCollector
 
         currentLevel = level;
         deathCount = 0;
+        attemptFinishTime = 0;
         attemptStartTime = sceneStartTime = Time.time;
     }
 
     public static void StartSession(string presetInformation) => dataString.AppendLine(presetInformation);
 
-    public static void EndLevel() => dataString.Append($"{currentLevel}: Deaths={deathCount};Time={RoundToDecimal(Time.time - sceneStartTime)}{Environment.NewLine}");
+    public static void EndLevel()
+    {
+        dataString.Append($"{currentLevel}: Deaths={deathCount};Time={RoundToDecimal(Time.time - sceneStartTime)}{Environment.NewLine}");
+        attemptFinishTime = Time.time;
+    }
 
     public static void SaveData()
     {
@@ -49,11 +60,12 @@ public static class DataCollector
     {
         dataString.Clear();
         deathCount= 0;
+        attemptFinishTime = 0;
         attemptStartTime = sceneStartTime = Time.time;
     }
 
     private static float RoundToDecimal(float time, int decimals = 1)
     {
-        return Mathf.Round(time * Mathf.Pow(10, decimals)) * Mathf.Pow(10, -decimals);
+        return Mathf.Round(time * Mathf.Pow(10, decimals)) / Mathf.Pow(10, decimals);
     }
 }
