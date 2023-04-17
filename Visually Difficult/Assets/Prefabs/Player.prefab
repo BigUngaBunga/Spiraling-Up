@@ -357,7 +357,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minimumFlipVelocity: 0.04
-  wallJumpFlipStopDuration: 0.2
   deathDuration: 0.4
 --- !u!114 &-1922336991613180267
 MonoBehaviour:
@@ -416,7 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f0bf0a209adae64f8f62ccbb89e1f72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jump: {fileID: 8300000, guid: cb7b88cc79a0559448b0e0893dd00544, type: 3}
+  jump: {fileID: 8300000, guid: 2057bac1f7ba70243970cbad731b5938, type: 3}
   land: {fileID: 8300000, guid: d3ebf56c95091cc4db3d7b1ee63195a9, type: 3}
   die: {fileID: 0}
   playJumpSound: 1

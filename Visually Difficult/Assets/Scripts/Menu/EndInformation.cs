@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -26,8 +27,14 @@ public class EndInformation : MonoBehaviour
     [SerializeField] private float delayBetweenMedals = 0.25f;
     [SerializeField] MedalParticleEffect goldEarnEffect, silverEarnEffect, bronzeEarnEffect;
 
+    [Header("Medal sounds")]
+    [SerializeField] private List<AudioClip> audioClips;
+    private AudioPlayer audioPlayer;
+    private int playedIndex = -1;
+
     private void Awake()
     {
+        audioPlayer = FindObjectOfType<AudioPlayer>();
         levelName.text = SceneManager.GetActiveScene().name;
         goldText.text = goldTime.ToString() + timeEnd;
         silverText.text = silverTime.ToString() + timeEnd;
@@ -55,6 +62,15 @@ public class EndInformation : MonoBehaviour
         var colour = medal.color;
         colour.a = value;
         medal.color = colour;
+    }
+
+    private void PlaySound(int soundIndex)
+    {
+        if (audioPlayer != null && playedIndex < soundIndex)
+        {
+            playedIndex = soundIndex;
+            audioPlayer.PlaySoundEffect(audioClips[soundIndex < audioClips.Count ? soundIndex : audioClips.Count - 1]);
+        }
     }
 
     IEnumerator UpdateMedals()
@@ -95,6 +111,8 @@ public class EndInformation : MonoBehaviour
                 if (lerpValue >= 0.5f && !coloured)
                 {
                     SetMedalAlpha(currentMedal, 1);
+                    PlaySound(i);
+
                     if (currentEffect.particleEffect != null)
                     {
                         Vector3 position = Camera.main.ScreenToWorldPoint(currentMedal.transform.position);

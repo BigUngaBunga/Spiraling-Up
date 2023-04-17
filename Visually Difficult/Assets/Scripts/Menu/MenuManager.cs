@@ -6,11 +6,13 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private Scrollbar presetToggle;
+    private AudioPlayer audioPlayer;
     private GraphicalSettings settings;
     private readonly int presets = 3;
 
     private void Awake()
     {
+        audioPlayer = FindObjectOfType<AudioPlayer>();
         CreateGraphicalSettings();        
     }
 
@@ -19,7 +21,8 @@ public class MenuManager : MonoBehaviour
         Cursor.visible= true;
         Cursor.lockState = CursorLockMode.Confined;
         pauseMenu.SetActive(false);
-        presetToggle.value = (float)Random.Range(0, 3) / (presets - 1); 
+        presetToggle.value = (float)Random.Range(0, 3) / (presets - 1);
+        audioPlayer.PlayMenuMusic();
     }
 
     public void ExitGame() => Application.Quit();
@@ -29,6 +32,7 @@ public class MenuManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         pauseMenu.SetActive(true);
+        audioPlayer.PlayGameMusic();
 
         int tutorialIndex = 1;
         Debug.Log(settings.ToString());
