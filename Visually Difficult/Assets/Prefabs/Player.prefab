@@ -415,12 +415,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f0bf0a209adae64f8f62ccbb89e1f72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jump: {fileID: 8300000, guid: 2057bac1f7ba70243970cbad731b5938, type: 3}
+  jump: {fileID: 8300000, guid: 6423192e94bddaa4e809be0674a48e72, type: 3}
   land: {fileID: 8300000, guid: d3ebf56c95091cc4db3d7b1ee63195a9, type: 3}
-  die: {fileID: 0}
+  die: {fileID: 8300000, guid: d10898c2388804e4787d63f8a07a5f6d, type: 3}
   playJumpSound: 1
   playLandSound: 0
-  playDeatSound: 0
+  playDeatSound: 1
 --- !u!50 &2672675540961163705
 Rigidbody2D:
   serializedVersion: 4

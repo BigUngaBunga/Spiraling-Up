@@ -139,6 +139,7 @@ MonoBehaviour:
   fireEffectDuration: 0.2
   justFiredColour: {r: 0.034843344, g: 0.28385258, b: 0.8207547, a: 1}
   rearmedColour: {r: 0.7830189, g: 0.41838437, b: 0.13665895, a: 1}
+  fireSound: {fileID: 8300000, guid: eabeee07257cbe045bb4cd15936be5cd, type: 3}
 --- !u!120 &5125323822124473618
 LineRenderer:
   m_ObjectHideFlags: 0

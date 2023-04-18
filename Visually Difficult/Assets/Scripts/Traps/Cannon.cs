@@ -28,6 +28,10 @@ public class Cannon : MonoBehaviour
     [SerializeField] Color justFiredColour;
     [SerializeField] Color rearmedColour;
 
+    [Header("Audio")]
+    [SerializeField] AudioClip fireSound;
+    private AudioPlayer audioPlayer;
+
     LineRenderer line;
     Animator anim;
 
@@ -39,6 +43,7 @@ public class Cannon : MonoBehaviour
 
     void Start()
     {
+        audioPlayer = FindObjectOfType<AudioPlayer>();
         setting = FindAnyObjectByType<VisualUpdater>().Settings;
 
         line = GetComponent<LineRenderer>();
@@ -94,6 +99,9 @@ public class Cannon : MonoBehaviour
 
             if (anim != null)
                 anim.SetTrigger("Fire");
+
+            if (audioPlayer != null)
+                audioPlayer.PlaySoundEffect(fireSound);
         }
     }
 
