@@ -2689,7 +2689,7 @@ MonoBehaviour:
   soundVolume: 0.6
   musicVolume: 0.6
   menuMusic: {fileID: 8300000, guid: dfa311ff9f30e454a95348c36e6d0e66, type: 3}
-  gameMusic: {fileID: 8300000, guid: fd0bd0a0ee2537a44bb39ac80e6b8140, type: 3}
+  gameMusic: {fileID: 8300000, guid: 582b3ec0acab852418c1236c68b321e0, type: 3}
 --- !u!114 &1474858137
 MonoBehaviour:
   m_ObjectHideFlags: 0
