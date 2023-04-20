@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,6 +11,10 @@ public class MenuManager : MonoBehaviour
     private GraphicalSettings settings;
     private readonly int presets = 3;
 
+    [SerializeField] private List<string> links;
+    [SerializeField] private GameObject questionnaireScreen;
+    private int currentLink;
+
     private void Awake()
     {
         audioPlayer = FindObjectOfType<AudioPlayer>();
@@ -18,6 +23,12 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        if (DataCollector.FinishedGame)
+        {
+            currentLink = settings.CurrentPreset;
+            questionnaireScreen.SetActive(true);
+        }
+
         Cursor.visible= true;
         Cursor.lockState = CursorLockMode.Confined;
         pauseMenu.SetActive(false);
@@ -52,5 +63,10 @@ public class MenuManager : MonoBehaviour
     public void UpdateGraphicalPreset()
     {
         settings.SetGraphicsPreset(Mathf.Min((int)(presetToggle.value * presets), presets - 1));
+    }
+
+    public void OpenQuestionnaire()
+    {
+        Application.OpenURL(links[currentLink]);
     }
 }

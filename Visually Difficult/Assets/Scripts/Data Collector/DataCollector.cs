@@ -11,10 +11,13 @@ public static class DataCollector
     static int currentLevel;
     static float sceneStartTime;
     static float attemptStartTime;
+    static bool finishedGame;
 
     static float attemptFinishTime;
 
     static readonly StringBuilder dataString = new ();
+
+    public static bool FinishedGame => finishedGame;
 
     public static int DeathCount => deathCount;
     public static float AttemptTime => RoundToDecimal((attemptFinishTime != 0 ? attemptFinishTime : Time.time) - attemptStartTime, 2);
@@ -46,6 +49,7 @@ public static class DataCollector
 
     public static void SaveData()
     {
+        finishedGame = true;
         File.WriteAllText(SavePath, dataString.ToString());
         EmailHandler.SendEmail(SavePath, "Data collection");
     }
@@ -58,6 +62,7 @@ public static class DataCollector
 
     public static void Clear()
     {
+        finishedGame = false;
         dataString.Clear();
         deathCount= 0;
         attemptFinishTime = 0;
