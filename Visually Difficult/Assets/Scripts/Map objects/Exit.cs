@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -46,6 +47,9 @@ public class Exit : DoorHandler
         }
         else
         {
+            var dontDestroyObjects = FindObjectsByType(typeof(DontDestroy), FindObjectsInactive.Include, FindObjectsSortMode.None);
+            for (int i = dontDestroyObjects.Length - 1; i >= 0; --i)
+                Destroy(dontDestroyObjects[i].GameObject());
             SceneManager.LoadSceneAsync(0);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;

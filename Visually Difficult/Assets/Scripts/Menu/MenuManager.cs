@@ -69,4 +69,9 @@ public class MenuManager : MonoBehaviour
     {
         Application.OpenURL(links[currentLink]);
     }
+
+    public void CopyGameData()
+    {
+        GUIUtility.systemCopyBuffer = DataCollector.GetData();
+    }
 }

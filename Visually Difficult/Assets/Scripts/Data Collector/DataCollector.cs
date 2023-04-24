@@ -49,10 +49,12 @@ public static class DataCollector
 
     public static void SaveData()
     {
+        //EmailHandler.Send(dataString.ToString(), "Data collection");
+
         finishedGame = true;
-        File.WriteAllText(SavePath, dataString.ToString());
-        EmailHandler.SendEmail(SavePath, "Data collection");
     }
+
+    public static string GetData() => dataString.ToString();
 
     public static void DeleteSaveFile()
     {
