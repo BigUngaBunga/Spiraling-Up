@@ -76,13 +76,13 @@ public class Cannon : MonoBehaviour
             return;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        //if (angle < minMaxAngle.x || angle > minMaxAngle.y)
-        //{
-        //    line.enabled = false;
-        //    return;
-        //}
+        if (angle < minMaxAngle.x || angle > minMaxAngle.y)
+        {
+            line.enabled = false;
+            return;
+        }
 
-        barrelPivot.rotation = Quaternion.Euler(barrelPivot.eulerAngles.x, barrelPivot.eulerAngles.y, angle + angleOffset);//Mathf.Clamp(angle, minMaxAngle.x, minMaxAngle.y)
+        barrelPivot.rotation = Quaternion.Euler(barrelPivot.eulerAngles.x, barrelPivot.eulerAngles.y, angle + angleOffset);
 
         line.SetPosition(0, muzzle.position);
         line.SetPosition(1, target.position);
