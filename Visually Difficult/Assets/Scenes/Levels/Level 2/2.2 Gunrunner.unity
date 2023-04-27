@@ -1872,8 +1872,8 @@ Transform:
   - {fileID: 1064645612}
   - {fileID: 277109758}
   - {fileID: 517571042}
-  - {fileID: 1830475036}
   - {fileID: 1377068333}
+  - {fileID: 1830475036}
   - {fileID: 558232286}
   - {fileID: 1014622513}
   - {fileID: 1827302255}
@@ -6655,7 +6655,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2708404936047262199, guid: 435313615a69f4c49a092807ff0af7d4, type: 3}
       propertyPath: goldTime
-      value: 12.3
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2708404936047262199, guid: 435313615a69f4c49a092807ff0af7d4, type: 3}
       propertyPath: bronzeTime

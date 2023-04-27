@@ -912,6 +912,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 3775093328702910361, guid: f8f1df7df534c1c49a3274a9209cee3d, type: 3}
+      propertyPath: minMaxAngle.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775093328702910361, guid: f8f1df7df534c1c49a3274a9209cee3d, type: 3}
+      propertyPath: minMaxAngle.y
+      value: 179
+      objectReference: {fileID: 0}
     - target: {fileID: 3775093328702910363, guid: f8f1df7df534c1c49a3274a9209cee3d, type: 3}
       propertyPath: m_Name
       value: Cannon
@@ -24886,6 +24894,10 @@ PrefabInstance:
     - target: {fileID: 7057693335611964537, guid: 435313615a69f4c49a092807ff0af7d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8132226876859718802, guid: 435313615a69f4c49a092807ff0af7d4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.73999023
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 435313615a69f4c49a092807ff0af7d4, type: 3}
