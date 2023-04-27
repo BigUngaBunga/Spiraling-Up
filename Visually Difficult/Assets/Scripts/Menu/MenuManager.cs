@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -27,6 +28,7 @@ public class MenuManager : MonoBehaviour
         {
             currentLink = settings.CurrentPreset;
             questionnaireScreen.SetActive(true);
+            questionnaireScreen.GetComponentInChildren<TMP_InputField>().text = DataCollector.GetData();
         }
 
         Cursor.visible= true;
@@ -67,11 +69,8 @@ public class MenuManager : MonoBehaviour
 
     public void OpenQuestionnaire()
     {
-        Application.OpenURL(links[currentLink]);
-    }
-
-    public void CopyGameData()
-    {
+        GUIUtility.systemCopyBuffer = string.Empty;
         GUIUtility.systemCopyBuffer = DataCollector.GetData();
+        Application.OpenURL(links[currentLink]);
     }
 }
