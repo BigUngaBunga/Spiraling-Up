@@ -46,6 +46,9 @@ public class Cannon : MonoBehaviour
         audioPlayer = FindObjectOfType<AudioPlayer>();
         setting = FindAnyObjectByType<VisualUpdater>().Settings;
 
+        if (TryGetComponent(out DynamicAnimation dynAnim))
+            dynAnim.Initialise();
+
         line = GetComponent<LineRenderer>();
         anim = GetComponent<Animator>();
 
