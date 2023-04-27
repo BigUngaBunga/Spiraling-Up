@@ -43,7 +43,7 @@ public static class DataCollector
 
     public static void EndLevel()
     {
-        dataString.Append($"{currentLevel}: Deaths={deathCount};Time={RoundToDecimal(Time.time - sceneStartTime)}{Environment.NewLine}");
+        dataString.Append($" {currentLevel}: Deaths={deathCount};Time={RoundToDecimal(Time.time - sceneStartTime)}");
         attemptFinishTime = Time.time;
     }
 
