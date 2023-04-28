@@ -16,19 +16,26 @@ public class GraphicalSettings : MonoBehaviour
 
         CurrentPreset = preset;
         settings.Clear();
-        for (int i = 0; i < numberOfLevels; i++)
-            settings.Add(Setting.Medium);
 
         switch (preset)
         {
             case 1:
-                settings[1] = Setting.Low;
-                settings[3] = Setting.High;
+                settings.Add(Setting.Low);
+                settings.Add(Setting.Low);
+                settings.Add(Setting.Medium);
+                settings.Add(Setting.High);
                 break;
             case 2:
-                settings[1] = Setting.High;
-                settings[3] = Setting.Low;
+                settings.Add(Setting.High);
+                settings.Add(Setting.High);
+                settings.Add(Setting.Medium);
+                settings.Add(Setting.Low);
                 break;
+        }
+
+        for (int i = settings.Count; i < numberOfLevels; i++)
+        {
+            settings.Add(Setting.Medium);
         }
 
         Debug.Log(ToString());
