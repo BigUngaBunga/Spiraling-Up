@@ -103,6 +103,8 @@ MonoBehaviour:
   moveScale: {x: 0.25, y: 0.1, z: 0}
   bounds: {x: 0, y: 0}
   initialPosition: {x: 0, y: 0, z: 0}
+  onlyMoveInX: 0
+  overrideBounds: 0
   nextElement: {fileID: 0}
   previousElement: {fileID: 0}
   connectionStart: {fileID: 1223368348353809285}
@@ -146,7 +148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1946206640801344545}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.098, y: -0.282, z: 0}
+  m_LocalPosition: {x: -0.09550004, y: -0.28099996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
