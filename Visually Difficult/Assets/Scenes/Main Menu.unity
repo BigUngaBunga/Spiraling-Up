@@ -2700,8 +2700,8 @@ MonoBehaviour:
   pauseMenu: {fileID: 1114941943}
   presetToggle: {fileID: 169696321}
   links:
-  - https://forms.gle/hXpoEZY78L5wYPQb6
   - https://forms.gle/R9cwXX6MSqRe4FL28
+  - https://forms.gle/hXpoEZY78L5wYPQb6
   - https://forms.gle/r1CpXNzY8dVqBnZL7
   questionnaireScreen: {fileID: 1125147163}
 --- !u!1 &1060523527
@@ -3199,7 +3199,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1125147164
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3259,7 +3259,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.25, y: 0.32700002}
   m_AnchorMax: {x: 0.75500005, y: 0.4014593}
-  m_AnchoredPosition: {x: -0.9999924, y: -1.0999985}
+  m_AnchoredPosition: {x: -1, y: -1.1000061}
   m_SizeDelta: {x: -2, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1329375203
@@ -4362,7 +4362,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Please copy the data and fill out this quick questionnarie
+  m_text: 'Use Ctrl + C to copy the data and then fill out this quick questionnarie
 
 '
   m_isRightToLeft: 0
@@ -4391,7 +4391,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27.8
+  m_fontSize: 22.25
   m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4502,7 +4502,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.0575, y: 0.6265407}
   m_AnchorMax: {x: 0.94500005, y: 0.76875573}
-  m_AnchoredPosition: {x: -0.5, y: 1.4000015}
+  m_AnchoredPosition: {x: -0.5, y: 1.3999939}
   m_SizeDelta: {x: -155, y: -8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &2511543403890041168
@@ -4736,7 +4736,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.07, y: 0.43824425}
   m_AnchorMax: {x: 0.94500005, y: 0.60200006}
-  m_AnchoredPosition: {x: -0.000015258789, y: -0.5375004}
+  m_AnchoredPosition: {x: 0, y: -0.5374985}
   m_SizeDelta: {x: 0.000030517578, y: -1.0760002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5128760365308088730

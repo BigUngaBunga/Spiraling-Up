@@ -18,19 +18,18 @@ public class MenuManager : MonoBehaviour
 
     private void Awake()
     {
+        if (DataCollector.FinishedGame)
+        {
+            questionnaireScreen.SetActive(true);
+            questionnaireScreen.GetComponentInChildren<TMP_InputField>().text = DataCollector.GetData();
+        }
+
         audioPlayer = FindObjectOfType<AudioPlayer>();
         CreateGraphicalSettings();        
     }
 
     private void Start()
     {
-        if (DataCollector.FinishedGame)
-        {
-            currentLink = settings.CurrentPreset;
-            questionnaireScreen.SetActive(true);
-            questionnaireScreen.GetComponentInChildren<TMP_InputField>().text = DataCollector.GetData();
-        }
-
         Cursor.visible= true;
         Cursor.lockState = CursorLockMode.Confined;
         pauseMenu.SetActive(false);
@@ -50,6 +49,7 @@ public class MenuManager : MonoBehaviour
         int tutorialIndex = 1;
         Debug.Log(settings.ToString());
         DataCollector.Clear();
+        DataCollector.CurrentPreset = settings.CurrentPreset;
         DataCollector.StartSession(settings.ToString());
         DataCollector.StartLevel(tutorialIndex);
         SceneManager.LoadSceneAsync(tutorialIndex);
@@ -71,6 +71,6 @@ public class MenuManager : MonoBehaviour
     {
         GUIUtility.systemCopyBuffer = string.Empty;
         GUIUtility.systemCopyBuffer = DataCollector.GetData();
-        Application.OpenURL(links[currentLink]);
+        Application.OpenURL(links[DataCollector.CurrentPreset]);
     }
 }

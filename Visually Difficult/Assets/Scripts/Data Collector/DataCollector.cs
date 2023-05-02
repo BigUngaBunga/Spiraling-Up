@@ -18,6 +18,7 @@ public static class DataCollector
     static readonly StringBuilder dataString = new ();
 
     public static bool FinishedGame => finishedGame;
+    public static int CurrentPreset { get; set; }
 
     public static int DeathCount => deathCount;
     public static float AttemptTime => RoundToDecimal((attemptFinishTime != 0 ? attemptFinishTime : Time.time) - attemptStartTime, 2);
