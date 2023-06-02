@@ -29,16 +29,6 @@ public class SelectionManager : MonoBehaviour
             if (nextSelectable = eventSystem.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown())
                 nextSelectable.Select();
         }
-        else if (GetKeyDown(left))
-        {
-            if (nextSelectable = eventSystem.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnLeft())
-                nextSelectable.Select();
-        }
-        else if (GetKeyDown(right))
-        {
-            if (nextSelectable = eventSystem.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnRight())
-                nextSelectable.Select();
-        }
         else if (GetKeyDown(select))
         {
             if (button = eventSystem.currentSelectedGameObject.GetComponent<Button>())
@@ -46,6 +36,31 @@ public class SelectionManager : MonoBehaviour
             else
                 Debug.Log("Selectable could not be pressed");
         }
+        if (eventSystem.currentSelectedGameObject.TryGetComponent(out Scrollbar scrollbar))
+        {
+            float newValue = scrollbar.value;
+            if (GetKeyDown(left))
+                newValue = scrollbar.value - 0.33f;
+            else if (GetKeyDown(right))
+                newValue = scrollbar.value + 0.33f;
+
+            scrollbar.value = Mathf.Clamp(newValue, 0, 1);
+        }
+        else
+        {
+            if (GetKeyDown(left))
+            {
+                if (nextSelectable = eventSystem.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnLeft())
+                    nextSelectable.Select();
+            }
+            else if (GetKeyDown(right))
+            {
+                if (nextSelectable = eventSystem.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnRight())
+                    nextSelectable.Select();
+            }
+        }
+
+
     }
 
     private bool GetKeyDown(KeyCode[] keyCodes)
