@@ -10,13 +10,12 @@ public class Entrance : DoorHandler
         anim = GetComponent<Animator>();
 
         Instantiate(playerPrefab, transform.position, Quaternion.identity);
-        DataCollector.StartLevel(SceneManager.GetActiveScene().buildIndex);
+        DataCollector.RestartTime();
     }
 
     protected override void Start()
     {
         base.Start();
-
         anim.SetTrigger("Close");
     }
 }

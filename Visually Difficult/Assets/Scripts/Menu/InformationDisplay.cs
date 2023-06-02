@@ -68,7 +68,7 @@ public class InformationDisplay : MonoBehaviour
 
 
         if (pauseMenu != null)
-            pauseMenu.enabled = false;
+            pauseMenu.enabled = true;
         else
             Debug.LogWarning("Could not find a pause menu");
     }

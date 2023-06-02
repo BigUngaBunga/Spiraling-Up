@@ -12,18 +12,8 @@ public class MenuManager : MonoBehaviour
     private GraphicalSettings settings;
     private readonly int presets = 3;
 
-    [SerializeField] private List<string> links;
-    [SerializeField] private GameObject questionnaireScreen;
-    private int currentLink;
-
     private void Awake()
     {
-        if (DataCollector.FinishedGame)
-        {
-            questionnaireScreen.SetActive(true);
-            questionnaireScreen.GetComponentInChildren<TMP_InputField>().text = DataCollector.GetData();
-        }
-
         audioPlayer = FindObjectOfType<AudioPlayer>();
         CreateGraphicalSettings();        
     }
@@ -49,9 +39,6 @@ public class MenuManager : MonoBehaviour
         int tutorialIndex = 1;
         Debug.Log(settings.ToString());
         DataCollector.Clear();
-        DataCollector.CurrentPreset = settings.CurrentPreset;
-        DataCollector.StartSession(settings.ToString());
-        DataCollector.StartLevel(tutorialIndex);
         SceneManager.LoadSceneAsync(tutorialIndex);
     }
 
@@ -65,12 +52,5 @@ public class MenuManager : MonoBehaviour
     public void UpdateGraphicalPreset()
     {
         settings.SetGraphicsPreset(Mathf.Min((int)(presetToggle.value * presets), presets - 1));
-    }
-
-    public void OpenQuestionnaire()
-    {
-        GUIUtility.systemCopyBuffer = string.Empty;
-        GUIUtility.systemCopyBuffer = DataCollector.GetData();
-        Application.OpenURL(links[DataCollector.CurrentPreset]);
     }
 }

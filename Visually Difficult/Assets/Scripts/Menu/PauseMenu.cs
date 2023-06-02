@@ -2,10 +2,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject menu;
+    [SerializeField] private Button primaryButton;
 
     private bool isPaused = false;
     private InputAction pauseAction;
@@ -26,6 +28,8 @@ public class PauseMenu : MonoBehaviour
         isPaused = !isPaused;
         Time.timeScale = isPaused ? 0 : 1;
         menu.SetActive(isPaused);
+        if (isPaused)
+            primaryButton.Select();
 
         Cursor.visible = isPaused;
         Cursor.lockState = isPaused ? CursorLockMode.Confined : CursorLockMode.Locked;

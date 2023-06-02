@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 2449870969827283617}
+  primaryButton: {fileID: 7504188072238737481}
 --- !u!223 &5275994042492215743
 Canvas:
   m_ObjectHideFlags: 0
@@ -216,7 +217,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &6832746594462481749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -496,7 +497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2511543404381048358, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -242.09998
+      value: -245.39294
       objectReference: {fileID: 0}
     - target: {fileID: 2511543404381048358, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -674,7 +675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2511543404381048358, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -304
+      value: -307.29297
       objectReference: {fileID: 0}
     - target: {fileID: 2511543404381048358, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -822,7 +823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2511543404381048358, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -182.26147
+      value: -185.55444
       objectReference: {fileID: 0}
     - target: {fileID: 2511543404381048358, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -875,3 +876,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2511543404381048358, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
   m_PrefabInstance: {fileID: 5404020630059804270}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7504188072238737481 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2511543404381048359, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
+  m_PrefabInstance: {fileID: 5404020630059804270}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

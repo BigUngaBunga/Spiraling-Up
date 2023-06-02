@@ -24,13 +24,13 @@ public class MenuButton : MonoBehaviour
     }
     private void OnDisable() => ResetScale();
     public void ResetScale() => transform.localScale = initialScale;
-    public void OnEnter()
+    public void OnSelected()
     {
         isSelected = true;
         audioPlayer.PlaySoundEffect(selectButton);
         StartLerp();
     }
-    public void OnExit()
+    public void OnDeselected()
     {
         isSelected = false;
         StartLerp();

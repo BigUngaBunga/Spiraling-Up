@@ -53,7 +53,6 @@ public class Exit : DoorHandler
             SceneManager.LoadSceneAsync(0);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
-            DataCollector.SaveData();
         }
 
         hasRun = true;
