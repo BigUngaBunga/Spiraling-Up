@@ -764,6 +764,7 @@ GameObject:
   - component: {fileID: 224446661}
   - component: {fileID: 224446663}
   - component: {fileID: 224446664}
+  - component: {fileID: 224446665}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -819,15 +820,15 @@ MonoBehaviour:
   m_XRTrackingOrigin: {fileID: 0}
   m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MoveAction: {fileID: 0}
+  m_SubmitAction: {fileID: 0}
+  m_CancelAction: {fileID: 0}
   m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MiddleClickAction: {fileID: 0}
+  m_RightClickAction: {fileID: 0}
+  m_ScrollWheelAction: {fileID: 0}
+  m_TrackedDevicePositionAction: {fileID: 0}
+  m_TrackedDeviceOrientationAction: {fileID: 0}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
@@ -843,6 +844,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70aede8a50614b445957711ed394aec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &224446665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224446659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c90d3f4e0c39040b73936f7e334f21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSystem: {fileID: 224446661}
+  up: 7700000011010000
+  down: 7300000012010000
+  left: 6100000014010000
+  right: 6400000013010000
+  select: 6d000000
 --- !u!1 &359169782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,7 +1031,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 93.75
+  m_fontSize: 94
   m_fontSizeBase: 45.88
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2198,7 +2217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2511543404381048358, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.5000458
+      value: -0.50006104
       objectReference: {fileID: 0}
     - target: {fileID: 2511543404381048358, guid: e2a69e1af26f4204595e9abdd9885ba1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
